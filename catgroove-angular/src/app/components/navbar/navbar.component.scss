@@ -4,23 +4,21 @@ $secTextColor: var(--secondary-text-color);
 $fontFamily: var(--text-font-family);
 
 /* Styles for tab labels */
-.mat-tab-label {
-    color: $primaryTextColor;
-}
-.mat-tab-label {
-    color: $primaryTextColor;
+a {
+    color: $primaryTextColor !important;
 }
 
 /* Styles for the active tab label */
-.mat-tab-label.mat-tab-label-active {
+a:active {
     font-weight: 500;
     color: $secTextColor;
 }
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background-color: red;
 }
-.mat-tab-group.mat-primary .mat-tab-header {
+.mat-tab-nav-bar {
     background-color: black;
+    max-height: 48px !important;
 }
 
 .remove-border-bottom .mat-tab-header {
