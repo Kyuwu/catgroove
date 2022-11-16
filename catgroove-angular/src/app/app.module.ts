@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
-import {MatTabsModule} from '@angular/material/tabs';
 import { HomeComponent } from './components/home/home.component';
 import { ManagementComponent } from './components/management/management.component';
 import { StaffComponent } from './components/staff/staff.component';
@@ -19,6 +17,7 @@ import { RulesComponent } from './components/rules/rules.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { DiscordComponent } from './components/discord/discord.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AngularMaterialModule } from './angular-mat.module';
 
 
 @NgModule({
@@ -38,11 +37,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DiscordComponent
   ],
   imports: [
+    AngularMaterialModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSliderModule,
-    MatTabsModule,
     FlexLayoutModule, 
   ],
   providers: [],
