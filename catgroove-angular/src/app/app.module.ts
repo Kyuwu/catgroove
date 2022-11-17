@@ -41,7 +41,6 @@ import { AngularMaterialModule } from './angular-mat.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
     FlexLayoutModule, 
   ],
   providers: [],

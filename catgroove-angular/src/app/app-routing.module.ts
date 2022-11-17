@@ -44,42 +44,52 @@ const routes: Routes = [{
   {
     path: 'home',
     component: HomeComponent,
+    data: { routeIdx: 0 }
   },
   {
     path: 'management',
     component: ManagementComponent,
+    data: { routeIdx: 1 }
   },
   {
     path: 'staff',
     component: StaffComponent,
+    data: { routeIdx: 2 }
   },
   {
     path: 'dancers',
-    component: DancersComponent
+    component: DancersComponent,
+    data: { routeIdx: 3 }
   },
   {
     path: 'services',
-    component: ServicesComponent
+    component: ServicesComponent,
+    data: { routeIdx: 4 }
   },
   {
     path: 'vip',
-    component: VipComponent
+    component: VipComponent,
+    data: { routeIdx: 5 }
   },
   {
     path: 'bar-menu',
-    component: BarMenuComponent
+    component: BarMenuComponent,
+    data: { routeIdx: 6 }
   },
   {
     path: 'rules',
-    component: RulesComponent
+    component: RulesComponent,
+    data: { routeIdx: 7 }
   },
   {
     path: 'partners',
-    component: PartnersComponent
+    component: PartnersComponent,
+    data: { routeIdx: 8 }
   },
   {
     path: 'discord',
-    component: DiscordComponent
+    component: DiscordComponent,
+    data: { routeIdx: 9 }
   },
 ];
 
