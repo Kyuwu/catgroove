@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { ManagementComponent } from './components/management/management.component';
 import { StaffComponent } from './components/staff/staff.component';
@@ -41,6 +41,7 @@ import { AngularMaterialModule } from './angular-mat.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NoopAnimationsModule,
     FlexLayoutModule, 
   ],
   providers: [],
