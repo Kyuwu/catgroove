@@ -1,11 +1,5 @@
 <ng-container *ngIf="!showLoader">
   <app-navbar></app-navbar>
-  <div *ngIf="loading" class="loading-container flex-content-center">
-    <mat-progress-spinner
-      color="primary"
-      mode="indeterminate">
-    </mat-progress-spinner>
-  </div>
   <div fxLayout="column" fxLayoutAlign="space-around center">
     <router-outlet></router-outlet>
   </div>

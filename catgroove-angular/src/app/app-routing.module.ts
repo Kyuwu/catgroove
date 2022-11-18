@@ -5,6 +5,9 @@ import {
   RouterModule,
   Routes
 } from '@angular/router';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { LoginComponent } from './components/admin/login/login.component';
+import { RegisterComponent } from './components/admin/register/register.component';
 import {
   BarMenuComponent
 } from './components/bar-menu/bar-menu.component';
@@ -35,6 +38,7 @@ import {
 import {
   VipComponent
 } from './components/vip/vip.component';
+import { AuthGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [{
     path: '',
@@ -91,6 +95,18 @@ const routes: Routes = [{
     component: DiscordComponent,
     data: { routeIdx: 9 }
   },
+  {
+    path: 'admin/register',
+    component: RegisterComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/login',
+    component: LoginComponent
+  },
+  {
+    path: 'admin/dashboard',
+    component: DashboardComponent, canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
