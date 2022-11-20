@@ -8,6 +8,7 @@ import {
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { LoginComponent } from './components/admin/login/login.component';
 import { RegisterComponent } from './components/admin/register/register.component';
+import { VerifyComponent } from './components/admin/verify/verify.component';
 import {
   BarMenuComponent
 } from './components/bar-menu/bar-menu.component';
@@ -97,7 +98,8 @@ const routes: Routes = [{
   },
   {
     path: 'admin/register',
-    component: RegisterComponent, canActivate: [AuthGuard]
+    component: RegisterComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin/login',
@@ -105,7 +107,13 @@ const routes: Routes = [{
   },
   {
     path: 'admin/dashboard',
-    component: DashboardComponent, canActivate: [AuthGuard]
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/verify',
+    component: VerifyComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

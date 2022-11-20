@@ -27,6 +27,12 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
+import { VerifyComponent } from './components/admin/verify/verify.component';
+import { DancerListComponent } from './components/admin/dashboard/dancer-list/dancer-list.component';
+import { StaffListComponent } from './components/admin/dashboard/staff-list/staff-list.component';
+import { AddDancerComponent } from './components/admin/dashboard/dancer-list/add-dancer/add-dancer.component';
+import { CrudService } from './shared/services/crud.services';
+import { DancerService } from './shared/services/dancer.service';
 
 
 @NgModule({
@@ -46,7 +52,11 @@ import { environment } from 'src/environments/environment';
     DiscordComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    VerifyComponent,
+    DancerListComponent,
+    AddDancerComponent,
+    StaffListComponent
   ],
   imports: [
     AngularMaterialModule,
@@ -62,7 +72,7 @@ import { environment } from 'src/environments/environment';
     // AngularFireStorageModule,
     // AngularFireDatabaseModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, CrudService, DancerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

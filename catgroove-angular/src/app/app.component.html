@@ -1,7 +1,14 @@
 <ng-container *ngIf="!showLoader">
-  <app-navbar></app-navbar>
-  <div fxLayout="column" fxLayoutAlign="space-around center">
-    <router-outlet></router-outlet>
+  <div *ngIf="this.authService.isLoggedIn == true">
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div *ngIf="this.authService.isLoggedIn == false">
+    <app-navbar></app-navbar>
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </ng-container>
 <app-loader *ngIf="showLoader"></app-loader>
