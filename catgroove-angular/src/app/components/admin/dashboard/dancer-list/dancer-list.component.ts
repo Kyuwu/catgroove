@@ -25,22 +25,10 @@ import {
 import {
   DancerService
 } from 'src/app/shared/services/dancer.service';
-import {
-  Dancer
-} from 'src/app/shared/services/dancer';
-
-
-const dancers: Dancer[] = [{}];
-const dancers2: Dancer[] = [{ key: "1",
-name: 'Chocola',
-age: 22,
-language: 'Dutch/English',
-nsfw: true,
-orientation: "Bisexual",
-pref: "Giga sub",
-services: "all services",
-bio: "kitten that wants to be filled"}];
-
+import { MatDialog } from '@angular/material/dialog';
+import { AddDancerComponent } from './add-dancer/add-dancer.component';
+import Dancer from 'src/app/shared/services/dancer';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dancer-list',
@@ -51,15 +39,14 @@ export class DancerListComponent implements AfterViewInit {
 
   currDancer ? : Dancer;
   currIndex = -1;
-  displayedColumns: string[] = ['key', 'name', 'age', 'language', 'nsfw', 'orientation', 'sexual preference', 'services', 'bio/description'];
+  displayedColumns: string[] = ['key', 'name', 'age', 'language', 'nsfw', 'orientation', 'sexual preference', 'services', 'bio/description','action'];
   dataSource = new MatTableDataSource();
-  constructor(private db: DancerService, private changeDetectorRefs: ChangeDetectorRef) {
+  constructor(private db: DancerService, public dialog: MatDialog, public snackbar: MatSnackBar) {
     // this.dataToDisplay.push(this.db.object('tutorial'));
   }
-
   submit() {
+    dancer: Dancer
     this.db.create({
-      key: "1",
       name: 'Chocola',
       age: 22,
       language: 'Dutch/English',
@@ -75,8 +62,6 @@ export class DancerListComponent implements AfterViewInit {
   }
 
   refreshList(): void {
-    this.currDancer = undefined;
-    this.currIndex = -1;
     this.retrieveDancers();
   }
 
@@ -96,24 +81,32 @@ export class DancerListComponent implements AfterViewInit {
     });
   }
 
-  // add() {
-  //   this.dialog.open(LanguageAddComponent, {
-  //     data: { user: this.user },
-  //   }).afterClosed().subscribe(result => {
-  //     this.refresh();
-  //   });
-  // }
-
-  setActiveDancer(dancer: Dancer, index: number): void {
-    this.currDancer = dancer;
-    this.currIndex = index;
+  add(element: number) {
+    this.dialog.open(AddDancerComponent, {
+      data: { user: this },
+    }).afterClosed().subscribe(result => {
+      this.refreshList();
+    });
   }
 
-  removeAllDancers(): void {
-    this.db.deleteAll()
-      .then(() => this.refreshList())
-      .catch(err => console.log(err));
+  edit(element: number) {
+    this.dialog.open(AddDancerComponent, {
+      data: { user: this },
+    }).afterClosed().subscribe(result => {
+      this.refreshList();
+    });
   }
+
+  delete(dancer: Dancer) {
+    if (dancer.key) {
+      this.db.delete(dancer.key)
+        .then(() => {
+          this.snackbar.open("Deleted");
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {

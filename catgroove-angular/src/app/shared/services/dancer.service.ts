@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { Dancer } from './dancer';
+import Dancer from './dancer';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class DancerService {
     return this.apiRef;
   }
 
-  create(dancer: Dancer): any {
-    return this.apiRef.push(dancer);
+  create(any: any): any {
+    return this.apiRef.push(any);
   }
 
   update(key: string, value: any): Promise<void> {
