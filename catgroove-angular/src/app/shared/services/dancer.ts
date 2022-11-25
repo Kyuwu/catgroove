@@ -1,4 +1,4 @@
-export class  Dancer {
+export interface Dancer {
     key?: string | null;
     name?: string;
     age?: number;

@@ -3,6 +3,7 @@ import {
 } from '@angular/cdk/collections';
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   OnInit,
   ViewChild
@@ -29,7 +30,8 @@ import {
 } from 'src/app/shared/services/dancer';
 
 
-const dancers: Dancer[] = [{      key: "1",
+const dancers: Dancer[] = [{}];
+const dancers2: Dancer[] = [{ key: "1",
 name: 'Chocola',
 age: 22,
 language: 'Dutch/English',
@@ -38,6 +40,7 @@ orientation: "Bisexual",
 pref: "Giga sub",
 services: "all services",
 bio: "kitten that wants to be filled"}];
+
 
 @Component({
   selector: 'app-dancer-list',
@@ -49,9 +52,8 @@ export class DancerListComponent implements AfterViewInit {
   currDancer ? : Dancer;
   currIndex = -1;
   displayedColumns: string[] = ['key', 'name', 'age', 'language', 'nsfw', 'orientation', 'sexual preference', 'services', 'bio/description'];
-  dataToDisplay = [...dancers];
-  dataSource = new MatTableDataSource(this.dataToDisplay);
-  constructor(private db: DancerService) {
+  dataSource = new MatTableDataSource();
+  constructor(private db: DancerService, private changeDetectorRefs: ChangeDetectorRef) {
     // this.dataToDisplay.push(this.db.object('tutorial'));
   }
 
@@ -84,26 +86,23 @@ export class DancerListComponent implements AfterViewInit {
         changes.map(c =>
           ({
             key: c.payload.key,
-            ...c.payload.val()
+            ...c.payload.val(),
           })
         )
       )
     ).subscribe(data => {
       console.log(data);
-      console.log(this.dataToDisplay);
-      this.dataToDisplay.push({
-        key: "12",
-        name: 'Chocola',
-        age: 22,
-        language: 'Dutch/English',
-        nsfw: true,
-        orientation: "Bisexual",
-        pref: "Giga sub",
-        services: "all services",
-        bio: "kitten that wants to be filled"
-      });
+        this.dataSource.data = data;
     });
   }
+
+  // add() {
+  //   this.dialog.open(LanguageAddComponent, {
+  //     data: { user: this.user },
+  //   }).afterClosed().subscribe(result => {
+  //     this.refresh();
+  //   });
+  // }
 
   setActiveDancer(dancer: Dancer, index: number): void {
     this.currDancer = dancer;
