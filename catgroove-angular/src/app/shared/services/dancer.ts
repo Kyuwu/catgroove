@@ -1,4 +1,4 @@
-export interface Dancer {
+export default class Dancer {
     key?: string | null;
     name?: string;
     age?: number;

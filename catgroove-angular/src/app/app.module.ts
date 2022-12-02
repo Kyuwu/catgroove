@@ -31,8 +31,8 @@ import { VerifyComponent } from './components/admin/verify/verify.component';
 import { DancerListComponent } from './components/admin/dashboard/dancer-list/dancer-list.component';
 import { StaffListComponent } from './components/admin/dashboard/staff-list/staff-list.component';
 import { AddDancerComponent } from './components/admin/dashboard/dancer-list/add-dancer/add-dancer.component';
-import { CrudService } from './shared/services/crud.services';
 import { DancerService } from './shared/services/dancer.service';
+import { EditDancerComponent } from './components/admin/dashboard/dancer-list/edit-dancer/edit-dancer.component';
 
 
 @NgModule({
@@ -56,6 +56,7 @@ import { DancerService } from './shared/services/dancer.service';
     VerifyComponent,
     DancerListComponent,
     AddDancerComponent,
+    EditDancerComponent,
     StaffListComponent
   ],
   imports: [
@@ -72,7 +73,7 @@ import { DancerService } from './shared/services/dancer.service';
     // AngularFireStorageModule,
     // AngularFireDatabaseModule,
   ],
-  providers: [AuthService, CrudService, DancerService],
+  providers: [AuthService, DancerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
