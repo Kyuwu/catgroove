@@ -1,1 +1,84 @@
-meow
+<mat-dialog-content>
+  <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch" style="max-width: 30vw;">
+    <!--  -->
+    <!-- image -->
+    <!-- <p class="file-name" *ngIf="!file; else fileName"></p>
+  <ng-template #fileName>
+    <img src="file.name">
+  </ng-template>
+  <input type="file" style="display: none" #fileInput accept="image/*" formControlName="image"
+    (change)="onFileChanged()" />
+  <button mat-raised-button color="primary" class="file-select-button" (click)="onClickFileInputButton()">
+    <mat-icon>attach_file</mat-icon>
+    <mat-label>Picture</mat-label>
+  </button> -->
+    <!-- image -->
+    <!--  -->
+    <div class="img-banner">
+      <input style="width: 100%;" #imageInput
+      id="file-upload" type="file" accept="image/x-png,image/jpeg,image/jpg,image/gif"
+      (change)="processFile(imageInput)" #fileUpload>
+      <a mat-flat-button color="primary" class="upload-btn"
+      (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>Upload image
+    </a>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Click to see image
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="img-div-wrapper">
+            <div class="img-wrapper">
+              <img mat-card-image name="image" src="{{selectedFile.src}}" *ngIf="selectedFile; else fillerImage">
+              <ng-template #fillerImage>
+                <img mat-card-image src="../../../../../../assets/images/dummy.png  ">
+              </ng-template>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <!--  -->
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Age</mat-label>
+      <input formControlName="age" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Language</mat-label>
+      <input formControlName="language" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>NSFW</mat-label>
+      <mat-select formControlName="nsfw">
+        <mat-option value="True">True</mat-option>
+        <mat-option value="False">False</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Orientation</mat-label>
+      <input formControlName="orientation" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Sexual preference</mat-label>
+      <input matInput formControlName="pref">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Services</mat-label>
+      <input matInput formControlName="services">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>bio/description</mat-label>
+      <textarea matInput formControlName="bio"></textarea>
+    </mat-form-field>
+    <!--  -->
+    <button mat-flat-button color="primary" [disabled]="!add.valid" [mat-dialog-close]="true"
+      (click)="submit()">Add</button>
+    <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+  </form>
+</mat-dialog-content>

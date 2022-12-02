@@ -3,6 +3,7 @@
 $primaryTextColor: var(--primary-text-color);
 $textFontFamily: var(--text-font-family);
 @import "./assets/css/variables.css";
+
 @font-face {
   font-family: "Calistoga";
   src: url("./assets/fonts/Calistoga-Regular.woff2") format("truetype");
@@ -39,10 +40,12 @@ body {
   font-family: $textFontFamily;
   font-size: var(--f-xl);
   line-height: 1.3;
+
   @media (max-width: 480px) {
     font-size: var(--f-lg);
   }
 }
+
 mat-card {
   background-color: black !important;
   color: white !important;
@@ -66,23 +69,30 @@ main {
   max-width: 1600px;
   min-height: 100vh;
   padding: 200px 150px;
+
   @media (max-width: 1080px) {
     padding: 200px 100px;
   }
+
   @media (max-width: 768px) {
     padding: 150px 50px;
   }
+
   @media (max-width: 480px) {
     padding: 125px 25px;
   }
+
   &.fillHeight {
     padding: 0 150px;
+
     @media (max-width: 1080px) {
       padding: 0 100px;
     }
+
     @media (max-width: 768px) {
       padding: 0 50px;
     }
+
     @media (max-width: 480px) {
       padding: 0 25px;
     }
@@ -93,9 +103,11 @@ section {
   margin: 0 auto;
   padding: 100px 0;
   max-width: 1000px;
+
   @media (max-width: 768px) {
     padding: 80px 0;
   }
+
   @media (max-width: 480px) {
     padding: 60px 0;
   }
@@ -117,6 +129,7 @@ h6 {
   margin: 0;
   font-size: clamp(40px, 8vw, 80px);
 }
+
 .medium-heading {
   margin: 0;
   font-size: clamp(40px, 8vw, 60px);
@@ -128,9 +141,11 @@ h6 {
   font-size: var(--f-md);
   font-weight: 400;
   line-height: 1.5;
+
   @media (max-width: 1080px) {
     font-size: var(--f-sm);
   }
+
   @media (max-width: 768px) {
     font-size: var(--f-xs);
   }
@@ -151,5 +166,60 @@ h6 {
     padding: 250px 0;
   }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.green-snackbar-styling {
+  border-radius: 1vh !important;
+  margin: 2.5vh !important;
+  min-width: 0 !important;
+  padding: 2vh 1.5vw !important;
+  min-height: 0 !important;
+  background-color: #4CAF50 !important;
+  color: white !important;
+}
+
+.orange-snackbar-styling {
+  border-radius: 1vh !important;
+  margin: 2.5vh !important;
+  min-width: 0 !important;
+  padding: 2vh 1.5vw !important;
+  min-height: 0 !important;
+  background-color: #eedf09 !important;
+  color: white !important;
+}
+
+.red-snackbar-styling {
+  border-radius: 1vh !important;
+  margin: 2.5vh !important;
+  min-width: 0 !important;
+  padding: 2vh 1.5vw !important;
+  min-height: 0 !important;
+  background-color: #e64242 !important;
+  color: white !important;
+}
+
+.img-div-wrapper {
+  margin: 10px;
+  outline: 1px solid #CCC;
+  background: $primaryBgColor;
+  color: #FFF;
+  height: auto;
+  overflow: auto;
+}
+
+.img-wrapper {
+  float:right;
+  height:auto;
+}
+input[type="file"] {
+  display: none;
+}

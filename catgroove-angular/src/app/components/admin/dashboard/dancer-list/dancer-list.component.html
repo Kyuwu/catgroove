@@ -2,9 +2,10 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Dancers
+          {{types}}
         </mat-panel-title>
       </mat-expansion-panel-header>
+      <button mat-flat-button color="primary" (click)="add()">Add {{type}}</button>
       <table mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="key">
@@ -53,10 +54,10 @@
         </ng-container>
 
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <th mat-header-cell *matHeaderCellDef> Actions for {{type}}</th>
           <td mat-cell *matCellDef="let element" class="action-link"> 
-            <a (click)="edit(element)">Edit</a> | 
-            <a (click)="delete(element)">Delete</a>  
+            <button mat-flat-button color="accent" (click)="edit(element)">Edit</button>
+            <button mat-flat-button color="warn" (click)="delete(element)">Delete</button>
           </td>
         </ng-container>
     

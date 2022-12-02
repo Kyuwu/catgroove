@@ -27,8 +27,10 @@ import {
 } from 'src/app/shared/services/dancer.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDancerComponent } from './add-dancer/add-dancer.component';
+import { EditDancerComponent } from './edit-dancer/edit-dancer.component';
 import Dancer from 'src/app/shared/services/dancer';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 
 @Component({
   selector: 'app-dancer-list',
@@ -37,11 +39,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class DancerListComponent implements AfterViewInit {
 
+  type = "Dancer";
+  types = "Dancers";
   currDancer ? : Dancer;
   currIndex = -1;
   displayedColumns: string[] = ['key', 'name', 'age', 'language', 'nsfw', 'orientation', 'sexual preference', 'services', 'bio/description','action'];
   dataSource = new MatTableDataSource();
-  constructor(private db: DancerService, public dialog: MatDialog, public snackbar: MatSnackBar) {
+  constructor(private db: DancerService, public dialog: MatDialog, public snackbar: SnackbarService) {
     // this.dataToDisplay.push(this.db.object('tutorial'));
   }
   submit() {
@@ -56,6 +60,7 @@ export class DancerListComponent implements AfterViewInit {
       services: "all services",
       bio: "kitten that wants to be filled"
     });
+    this.snackbar.add("Added", '');
   }
   ngOnInit(): void {
     this.retrieveDancers();
@@ -81,7 +86,7 @@ export class DancerListComponent implements AfterViewInit {
     });
   }
 
-  add(element: number) {
+  add() {
     this.dialog.open(AddDancerComponent, {
       data: { user: this },
     }).afterClosed().subscribe(result => {
@@ -90,7 +95,7 @@ export class DancerListComponent implements AfterViewInit {
   }
 
   edit(element: number) {
-    this.dialog.open(AddDancerComponent, {
+    this.dialog.open(EditDancerComponent, {
       data: { user: this },
     }).afterClosed().subscribe(result => {
       this.refreshList();
@@ -101,7 +106,7 @@ export class DancerListComponent implements AfterViewInit {
     if (dancer.key) {
       this.db.delete(dancer.key)
         .then(() => {
-          this.snackbar.open("Deleted");
+          this.snackbar.delete("Deleted "+dancer.name, '');
         })
         .catch(err => console.log(err));
     }
