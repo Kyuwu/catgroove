@@ -28,3 +28,15 @@
     overflow: auto;
   }
 }
+.loader-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: red;
+  opacity: 0.8;
+  z-index: 99;
+}
+
+.loader-container ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: white;
+}

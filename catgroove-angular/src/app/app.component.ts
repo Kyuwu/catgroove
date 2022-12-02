@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ChildrenOutletContexts, Router, RouterOutlet } from '@angular/router';
 import { Observable, Subscription, timer } from 'rxjs';
 import { AuthService } from './shared/services/auth.service';
+import { LoaderService } from './shared/services/loader.service';
 import { fader, stepper } from './shared/util/animation/animations';
 
 @Component({
@@ -23,7 +24,7 @@ export class AppComponent {
   showLoader = true;
   loading: boolean = false;
 
-  constructor(public router: Router, public authService: AuthService) {}
+  constructor(public router: Router, public authService: AuthService, public loaderService: LoaderService, private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.setTimer();
@@ -37,6 +38,9 @@ export class AppComponent {
     if ( this.subscription && this.subscription instanceof Subscription) {
       this.subscription.unsubscribe();
     }
+  }
+  ngAfterViewChecked(){
+    this.changeDetector.detectChanges();
   }
   
   public setTimer(){

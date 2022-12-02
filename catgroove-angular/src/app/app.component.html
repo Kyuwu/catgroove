@@ -7,7 +7,11 @@
   <div *ngIf="this.authService.isLoggedIn == false">
     <app-navbar></app-navbar>
     <div fxLayout="column" fxLayoutAlign="space-around center">
-      <router-outlet></router-outlet>
+      <router-outlet>
+        <div fxLayoutAlign="center center" *ngIf="loaderService.isLoading | async" class="loader-container">
+          <mat-spinner strokeWidth="3" diameter="40" color="light-primary-text"></mat-spinner>
+        </div>
+      </router-outlet>
     </div>
   </div>
 </ng-container>
