@@ -33,6 +33,7 @@ import { StaffListComponent } from './components/admin/dashboard/staff-list/staf
 import { AddDancerComponent } from './components/admin/dashboard/dancer-list/add-dancer/add-dancer.component';
 import { DancerService } from './shared/services/dancer.service';
 import { EditDancerComponent } from './components/admin/dashboard/dancer-list/edit-dancer/edit-dancer.component';
+import { DancerCardComponent } from './components/dancers/dancer-card/dancer-card.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { EditDancerComponent } from './components/admin/dashboard/dancer-list/ed
     ManagementComponent,
     StaffComponent,
     DancersComponent,
+    DancerCardComponent,
     ServicesComponent,
     VipComponent,
     BarMenuComponent,

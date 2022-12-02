@@ -1,0 +1,28 @@
+<div class="tp-wrapper">
+  <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+    <!-- front -->
+    <div class="tp-box__side tp-box__front">
+      <mat-card>
+        <mat-card-header>
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-card-title>{{dancer.name}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{dancer.image}}" alt="Paisa brat">
+        <mat-card-content>
+          <p>
+            {{dancer.bio}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!--  -->
+    <!-- back -->
+    <div class="tp-box__side tp-box__back">
+      <mat-card>
+        <img mat-card-image src="../../../assets/images/dummy.png">
+        <mat-card-title>Dancers back</mat-card-title>
+      </mat-card>
+    </div>
+    <!--  -->
+  </div>
+</div>
