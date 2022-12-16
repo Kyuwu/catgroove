@@ -207,22 +207,76 @@ body {
   color: white !important;
 }
 
+.blue-snackbar-styling {
+  border-radius: 1vh !important;
+  margin: 2.5vh !important;
+  min-width: 0 !important;
+  padding: 2vh 1.5vw !important;
+  min-height: 0 !important;
+  background-color: #4245e6 !important;
+  color: white !important;
+}
+
 .img-div-wrapper {
-  margin: 10px;
-  outline: 1px solid #CCC;
+  margin: 3px;
+  outline: 3px solid rgb(143, 120, 120);
   background: $primaryBgColor;
   color: #FFF;
   height: auto;
   overflow: auto;
+  text-align: center;
 }
 
-.img-wrapper {
-  float:right;
-  height:auto;
+.img-wrapper img {
+  height: 400px;
 }
+
 input[type="file"] {
   display: none;
 }
+
 .mat-grid-tile-content {
   display: block !important;
+}
+
+.mat-dialog-container {
+  width: 50vw !important;
+}
+
+h2 {
+  color: black !important;
+}
+
+mat-accordion {
+  margin-top: 1vh;
+  width: 50%;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-table {
+  background: rgb(159, 161, 155) !important;
+}
+
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  color: white;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  font-weight: 500;
+  font-size: large;
+}
+
+.mat-paginator-outer-container {
+  background: rgb(159, 161, 155) !important;
+  color: white !important; 
 }

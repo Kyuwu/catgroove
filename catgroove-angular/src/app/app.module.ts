@@ -31,17 +31,22 @@ import { VerifyComponent } from './components/admin/verify/verify.component';
 import { DancerListComponent } from './components/admin/dashboard/dancer-list/dancer-list.component';
 import { StaffListComponent } from './components/admin/dashboard/staff-list/staff-list.component';
 import { AddDancerComponent } from './components/admin/dashboard/dancer-list/add-dancer/add-dancer.component';
-import { DancerService } from './shared/services/dancer.service';
 import { EditDancerComponent } from './components/admin/dashboard/dancer-list/edit-dancer/edit-dancer.component';
 import { DancerCardComponent } from './components/dancers/dancer-card/dancer-card.component';
+import { AddStaffComponent } from './components/admin/dashboard/staff-list/add-staff/add-staff.component';
+import { EditStaffComponent } from './components/admin/dashboard/staff-list/edit-staff/edit-staff.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
   declarations: [
+    //front
     AppComponent,
     LoaderComponent,
     NavbarComponent,
     HomeComponent,
+    SpinnerComponent,
+    //navbar
     ManagementComponent,
     StaffComponent,
     DancersComponent,
@@ -52,14 +57,19 @@ import { DancerCardComponent } from './components/dancers/dancer-card/dancer-car
     RulesComponent,
     PartnersComponent,
     DiscordComponent,
+    //admin
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
     VerifyComponent,
+    //dancer
     DancerListComponent,
     AddDancerComponent,
     EditDancerComponent,
-    StaffListComponent
+    //staff
+    StaffListComponent,
+    AddStaffComponent,
+    EditStaffComponent
   ],
   imports: [
     AngularMaterialModule,
@@ -75,7 +85,7 @@ import { DancerCardComponent } from './components/dancers/dancer-card/dancer-car
     // AngularFireStorageModule,
     // AngularFireDatabaseModule,
   ],
-  providers: [AuthService, DancerService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

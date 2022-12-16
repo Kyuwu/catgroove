@@ -1,10 +1,45 @@
-  <mat-toolbar *ngIf="authService.userData as user">
+  <!-- <mat-toolbar *ngIf="authService.userData as user">
     <span>Hello, {{user.email}}</span>
     <span class="example-spacer"></span>
     
     <button (click)="authService.SignOut()" mat-flat-button color="warn">Logout</button>
   </mat-toolbar>
-  <div>
+  <div class="list-wrapper">
     <app-dancer-list></app-dancer-list>
+    <app-staff-list></app-staff-list>
   </div>
-  
+   -->
+  <mat-toolbar *ngIf="authService.userData as user">
+    <span>Hello, {{user.email}}</span>
+    <span class="example-spacer"></span>
+    <button mat-flat-button color="primary" (click)="state = 'register'">Register Administrator</button>
+    <button mat-flat-button (click)="drawer.toggle()">Toggle drawer</button>
+    <button (click)="authService.SignOut()" mat-flat-button color="warn">Logout</button>
+  </mat-toolbar>
+  <mat-drawer-container class="example-container" hasBackdrop="false">
+
+    <mat-drawer-content>
+      <ng-container *ngIf="loading; else content">
+        <circle-spinner></circle-spinner>
+      </ng-container>
+      <ng-template #content>
+        <div class="list-wrapper">
+          <app-register *ngIf="state=='register'"></app-register>
+          <app-dancer-list *ngIf="state=='dancer'"></app-dancer-list>
+          <app-staff-list *ngIf="state=='staff'"></app-staff-list>
+        </div>
+      </ng-template>
+    </mat-drawer-content>
+    <mat-drawer #drawer mode="over">
+      <div class="button-wrapper">
+        <button mat-flat-button color="primary" (click)="state = 'management'">MANAGEMENT</button>
+        <button mat-flat-button color="primary" (click)="state = 'staff'">STAFF</button>
+        <button mat-flat-button color="primary" (click)="state = 'dancer'">DANCERS</button>
+        <button mat-flat-button color="primary" (click)="state = 'services'">SERVICES</button>
+        <button mat-flat-button color="primary" (click)="state = 'vip'">VIP</button>
+        <button mat-flat-button color="primary" (click)="state = 'staff'">BAR MENU</button>
+        <button mat-flat-button color="primary" (click)="state = 'staff'">RULES</button>
+        <button mat-flat-button color="primary" (click)="state = 'staff'">PARTNERS</button>
+      </div>
+    </mat-drawer>
+  </mat-drawer-container>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormControlName, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DancerService } from 'src/app/shared/services/dancer.service';
+import { DancerService } from 'src/app/shared/services/firebase/dancer.service';
 import { ImageSnippet } from 'src/app/shared/util/imagesnippet.model';
 
 @Component({
@@ -11,10 +11,10 @@ import { ImageSnippet } from 'src/app/shared/util/imagesnippet.model';
 })
 
 export class AddDancerComponent implements OnInit {
+  type = 'Dancer';
   selectedFile!: ImageSnippet;
   add: FormGroup;
-  constructor(private matDialog: MatDialog,  public fb: FormBuilder, public db: DancerService) {     
-    // this.dialogRef = this.matDialog.open(AddDancerComponent);
+  constructor(public fb: FormBuilder, public db: DancerService) {     
     this.add = this.fb.group({
       image: ['', Validators.required],
       name: ['', Validators.required],

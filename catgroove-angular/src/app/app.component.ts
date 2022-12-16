@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { ChildrenOutletContexts, Router, RouterOutlet } from '@angular/router';
 import { Observable, Subscription, timer } from 'rxjs';
 import { AuthService } from './shared/services/auth.service';
-import { LoaderService } from './shared/services/loader.service';
+import { LoaderService } from './shared/services/spinner/loader.service';
 import { fader, stepper } from './shared/util/animation/animations';
 
 @Component({

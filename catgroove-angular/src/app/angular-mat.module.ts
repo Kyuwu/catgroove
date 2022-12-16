@@ -32,7 +32,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
@@ -88,6 +88,14 @@ const materialModules = [
   providers: [
     MatDatepickerModule,
     MatSnackBarConfig,
+    { 
+      provide: MatDialogRef,
+      useValue: []
+       }, 
+      { 
+      provide: MAT_DIALOG_DATA, 
+      useValue: [] 
+      }
   ]
 })
 export class AngularMaterialModule { }
