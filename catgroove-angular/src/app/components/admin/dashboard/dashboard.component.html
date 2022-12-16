@@ -24,6 +24,7 @@
       </ng-container>
       <ng-template #content>
         <div class="list-wrapper">
+          <app-home *ngIf="state=='home'"></app-home>
           <app-register *ngIf="state=='register'"></app-register>
           <app-dancer-list *ngIf="state=='dancer'"></app-dancer-list>
           <app-staff-list *ngIf="state=='staff'"></app-staff-list>
@@ -37,9 +38,9 @@
         <button mat-flat-button color="primary" (click)="state = 'dancer'">DANCERS</button>
         <button mat-flat-button color="primary" (click)="state = 'services'">SERVICES</button>
         <button mat-flat-button color="primary" (click)="state = 'vip'">VIP</button>
-        <button mat-flat-button color="primary" (click)="state = 'staff'">BAR MENU</button>
-        <button mat-flat-button color="primary" (click)="state = 'staff'">RULES</button>
-        <button mat-flat-button color="primary" (click)="state = 'staff'">PARTNERS</button>
+        <button mat-flat-button color="primary" (click)="state = 'bar'">BAR MENU</button>
+        <button mat-flat-button color="primary" (click)="state = 'rules'">RULES</button>
+        <button mat-flat-button color="primary" (click)="state = 'partners'">PARTNERS</button>
       </div>
     </mat-drawer>
   </mat-drawer-container>

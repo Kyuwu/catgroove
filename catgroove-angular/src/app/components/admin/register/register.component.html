@@ -1,4 +1,4 @@
-<div class="displayTable">
+<!-- <div class="displayTable">
     <div class="displayTableCell">
       <div class="authBlock">
         <h3>Sign Up</h3>
@@ -31,7 +31,6 @@
         <div class="formGroup">
           <span class="or"><span class="orInner">Or</span></span>
         </div>
-        <!-- Continue with Google -->
         <div class="formGroup">
           <button
             type="button"
@@ -50,4 +49,23 @@
         >
       </div>
     </div>
-  </div>
+  </div> -->
+  <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch" style="max-width: 30vw;">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" formControlName="userEmail" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" formControlName="userPwd" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password Confirm</mat-label>
+      <input type="password" formControlName="userPwd2" matInput>
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button mat-flat-button color="primary" [disabled]="!add.valid" [mat-dialog-close]="true" (click)="submit()">Add
+        {{type}}</button>
+    </mat-dialog-actions>
+    <mat-label>The user gets a mail in his/her inbox that needs to be confirmed before login works</mat-label>
+  </form>

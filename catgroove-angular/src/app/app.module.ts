@@ -36,6 +36,8 @@ import { DancerCardComponent } from './components/dancers/dancer-card/dancer-car
 import { AddStaffComponent } from './components/admin/dashboard/staff-list/add-staff/add-staff.component';
 import { EditStaffComponent } from './components/admin/dashboard/staff-list/edit-staff/edit-staff.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { TwitchComponent } from './components/admin/dashboard/home/twitch/twitch.component';
+import { OpeningComponent } from './components/admin/dashboard/home/opening/opening.component';
 
 
 @NgModule({
@@ -58,6 +60,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     PartnersComponent,
     DiscordComponent,
     //admin
+    HomeComponent,
+    TwitchComponent,
+    OpeningComponent,
     LoginComponent,
     RegisterComponent,
     DashboardComponent,

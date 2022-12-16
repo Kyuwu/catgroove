@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  state = 'register';
+  state = 'home';
   loading: boolean = false;
   constructor(public authService: AuthService) {}
 

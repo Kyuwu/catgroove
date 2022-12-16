@@ -3,12 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs';
-import Staff from 'src/app/shared/models/staff';
-import { DancerService } from 'src/app/shared/services/firebase/dancer.service';
 import { StaffService } from 'src/app/shared/services/firebase/staff.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
-import { AddDancerComponent } from '../dancer-list/add-dancer/add-dancer.component';
-import { EditDancerComponent } from '../dancer-list/edit-dancer/edit-dancer.component';
 import { AddStaffComponent } from './add-staff/add-staff.component';
 import { EditStaffComponent } from './edit-staff/edit-staff.component';
 
@@ -49,7 +45,11 @@ export class StaffListComponent implements OnInit {
   }
 
   add() {
-    this.dialog.open(AddStaffComponent).afterClosed().subscribe(() => {
+    const dialogRef = this.dialog.open(AddStaffComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackbar.add(`Added ${this.type}`, '');
+      }
       this.refreshList();
     });
   }
