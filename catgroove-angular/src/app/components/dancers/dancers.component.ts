@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
-import Dancer from 'src/app/shared/services/dancer';
-import { DancerService } from 'src/app/shared/services/dancer.service';
+import Dancer from 'src/app/shared/models/dancer';
+import { DancerService } from 'src/app/shared/services/firebase/dancer.service';
 
 @Component({
   selector: 'app-dancers',

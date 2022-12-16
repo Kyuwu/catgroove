@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
-import Dancer from 'src/app/shared/services/dancer';
+import Dancer from 'src/app/shared/models/dancer';
 
 @Component({
   selector: 'app-dancer-card',

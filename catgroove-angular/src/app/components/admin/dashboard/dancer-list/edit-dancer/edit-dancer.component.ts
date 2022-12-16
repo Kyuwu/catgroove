@@ -16,10 +16,10 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from '@angular/material/dialog';
-import Dancer from 'src/app/shared/services/dancer';
+import Dancer from 'src/app/shared/models/dancer';
 import {
   DancerService
-} from 'src/app/shared/services/dancer.service';
+} from 'src/app/shared/services/firebase/dancer.service';
 import {
   ImageSnippet
 } from 'src/app/shared/util/imagesnippet.model';
@@ -33,7 +33,7 @@ export class EditDancerComponent implements OnInit {
   type = "Dancer";
   selectedFile!: ImageSnippet;
   add: FormGroup;
-  dancer: Dancer;
+  data: Dancer;
 
   constructor(public fb: FormBuilder, public db: DancerService,
     @Inject(MAT_DIALOG_DATA) data) {
@@ -49,14 +49,14 @@ export class EditDancerComponent implements OnInit {
       services: [data.services, Validators.required],
       bio: [data.bio, Validators.required],
     });
-    this.dancer = data;
+    this.data = data;
   }
 
   ngOnInit(): void {
     // console.log(data)
   }
   submit() {
-    this.db.update(this.dancer.key, this.add.value);
+    this.db.update(this.data.key, this.add.value);
   }
 
   processFile(imageInput: any) {

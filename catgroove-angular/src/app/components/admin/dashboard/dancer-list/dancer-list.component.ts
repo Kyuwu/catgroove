@@ -1,16 +1,8 @@
 import {
-  DataSource
-} from '@angular/cdk/collections';
-import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
-  OnInit,
   ViewChild
 } from '@angular/core';
-import {
-  AngularFireDatabase
-} from '@angular/fire/compat/database';
 import {
   MatPaginator
 } from '@angular/material/paginator';
@@ -18,13 +10,11 @@ import {
   MatTableDataSource
 } from '@angular/material/table';
 import {
-  map,
-  Observable,
-  ReplaySubject
+  map
 } from 'rxjs';
 import {
   DancerService
-} from 'src/app/shared/services/dancer.service';
+} from 'src/app/shared/services/firebase/dancer.service';
 import {
   MatDialog,
   MatDialogRef
@@ -35,10 +25,6 @@ import {
 import {
   EditDancerComponent
 } from './edit-dancer/edit-dancer.component';
-import Dancer from 'src/app/shared/services/dancer';
-import {
-  MatSnackBar
-} from '@angular/material/snack-bar';
 import {
   SnackbarService
 } from 'src/app/shared/services/snackbar.service';
@@ -52,20 +38,18 @@ export class DancerListComponent implements AfterViewInit {
 
   type = "Dancer";
   types = "Dancers";
-  currDancer ? : Dancer;
-  currIndex = -1;
   displayedColumns: string[] = ['key', 'name', 'age', 'language', 'nsfw', 'orientation', 'sexual preference', 'services', 'bio/description', 'action'];
   dataSource = new MatTableDataSource();
   constructor(private db: DancerService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditDancerComponent > ) {}
   ngOnInit(): void {
-    this.retrieveDancers();
+    this.retrieveList();
   }
 
   refreshList(): void {
-    this.retrieveDancers();
+    this.retrieveList();
   }
 
-  retrieveDancers(): void {
+  retrieveList(): void {
     this.db.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -87,24 +71,23 @@ export class DancerListComponent implements AfterViewInit {
     });
   }
 
-  edit(dancer: Dancer) {
-    console.log(dancer);
+  edit(data: any) {
     const dialogRef = this.dialog.open(EditDancerComponent, {
-      data: dancer
+      data: data
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.snackbar.update(`Updated ${this.type}: ${dancer.name}`, '');
+        this.snackbar.update(`Updated ${this.type}: ${data.name}`, '');
       }
       this.refreshList();
     });
   }
 
-  delete(dancer: Dancer) {
-    if (dancer.key) {
-      this.db.delete(dancer.key)
+  delete(data: any) {
+    if (data.key) {
+      this.db.delete(data.key)
         .then(() => {
-          this.snackbar.delete(`Deleted  ${this.type}: ${dancer.name}`, '');
+          this.snackbar.delete(`Deleted  ${this.type}: ${data.name}`, '');
         })
         .catch(err => console.log(err));
     }

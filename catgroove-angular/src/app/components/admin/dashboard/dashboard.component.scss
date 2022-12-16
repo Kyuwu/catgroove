@@ -1,3 +1,38 @@
+.mat-drawer-container {
+  background-color: rgb(159, 161, 155);
+}
+
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
+
+.mat-drawer-content {
+  width: 80vw !important;
+  float: right;
+}
+
+.mat-drawer {
+  background-color: #673ab7;
+  width: 20vw !important;
+  border-right: solid rgb(0, 0, 0);
+}
+
+.mat-drawer button {
+  width: 100% !important;
+  height: 11.25vh;
+}
+
+.mat-toolbar {
+  height: 10vh;
+  background-color: #18171a;
+
+}
+
+.mat-drawer-content {
+  height: 90vh;
+}
+
+span {
+  color: white !important;
+}
+

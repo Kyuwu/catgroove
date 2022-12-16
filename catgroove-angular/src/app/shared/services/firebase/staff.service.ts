@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import Dancer from './dancer';
+import Staff from '../../models/staff';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DancerService {
-  private dbPath = '/dancers';
+export class StaffService {
+  private dbPath = '/staff';
 
-  apiRef: AngularFireList<Dancer>;
+  apiRef: AngularFireList<Staff>;
 
   constructor(db: AngularFireDatabase) {
     this.apiRef = db.list(this.dbPath);
   }
 
-  getAll(): AngularFireList<Dancer> {
+  getAll(): AngularFireList<Staff> {
     return this.apiRef;
   }
 
