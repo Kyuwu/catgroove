@@ -21,6 +21,13 @@ export class SnackbarService {
        panelClass: ['orange-snackbar-styling']
     });
   }
+  update(message: string, action: string) {
+    this.snaccy.open(message, action, {
+       duration: 2000,
+       verticalPosition: 'top',
+       panelClass: ['blue-snackbar-styling']
+    });
+  }
   add(message: string, action: string) {
     this.snaccy.open(message, action, {
        duration: 2000,

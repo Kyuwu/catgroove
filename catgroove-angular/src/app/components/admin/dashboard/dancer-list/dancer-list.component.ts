@@ -25,12 +25,23 @@ import {
 import {
   DancerService
 } from 'src/app/shared/services/dancer.service';
-import { MatDialog } from '@angular/material/dialog';
-import { AddDancerComponent } from './add-dancer/add-dancer.component';
-import { EditDancerComponent } from './edit-dancer/edit-dancer.component';
+import {
+  MatDialog,
+  MatDialogRef
+} from '@angular/material/dialog';
+import {
+  AddDancerComponent
+} from './add-dancer/add-dancer.component';
+import {
+  EditDancerComponent
+} from './edit-dancer/edit-dancer.component';
 import Dancer from 'src/app/shared/services/dancer';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarService } from 'src/app/shared/services/snackbar.service';
+import {
+  MatSnackBar
+} from '@angular/material/snack-bar';
+import {
+  SnackbarService
+} from 'src/app/shared/services/snackbar.service';
 
 @Component({
   selector: 'app-dancer-list',
@@ -43,25 +54,9 @@ export class DancerListComponent implements AfterViewInit {
   types = "Dancers";
   currDancer ? : Dancer;
   currIndex = -1;
-  displayedColumns: string[] = ['key', 'name', 'age', 'language', 'nsfw', 'orientation', 'sexual preference', 'services', 'bio/description','action'];
+  displayedColumns: string[] = ['key', 'name', 'age', 'language', 'nsfw', 'orientation', 'sexual preference', 'services', 'bio/description', 'action'];
   dataSource = new MatTableDataSource();
-  constructor(private db: DancerService, public dialog: MatDialog, public snackbar: SnackbarService) {
-    // this.dataToDisplay.push(this.db.object('tutorial'));
-  }
-  submit() {
-    dancer: Dancer
-    this.db.create({
-      name: 'Chocola',
-      age: 22,
-      language: 'Dutch/English',
-      nsfw: true,
-      orientation: "Bisexual",
-      pref: "Giga sub",
-      services: "all services",
-      bio: "kitten that wants to be filled"
-    });
-    this.snackbar.add("Added", '');
-  }
+  constructor(private db: DancerService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditDancerComponent > ) {}
   ngOnInit(): void {
     this.retrieveDancers();
   }
@@ -82,22 +77,25 @@ export class DancerListComponent implements AfterViewInit {
       )
     ).subscribe(data => {
       console.log(data);
-        this.dataSource.data = data;
+      this.dataSource.data = data;
     });
   }
 
   add() {
-    this.dialog.open(AddDancerComponent, {
-      data: { user: this },
-    }).afterClosed().subscribe(result => {
+    this.dialog.open(AddDancerComponent).afterClosed().subscribe(result => {
       this.refreshList();
     });
   }
 
-  edit(element: number) {
-    this.dialog.open(EditDancerComponent, {
-      data: { user: this },
-    }).afterClosed().subscribe(result => {
+  edit(dancer: Dancer) {
+    console.log(dancer);
+    const dialogRef = this.dialog.open(EditDancerComponent, {
+      data: dancer
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackbar.update(`Updated ${this.type}: ${dancer.name}`, '');
+      }
       this.refreshList();
     });
   }
@@ -106,7 +104,7 @@ export class DancerListComponent implements AfterViewInit {
     if (dancer.key) {
       this.db.delete(dancer.key)
         .then(() => {
-          this.snackbar.delete("Deleted "+dancer.name, '');
+          this.snackbar.delete(`Deleted  ${this.type}: ${dancer.name}`, '');
         })
         .catch(err => console.log(err));
     }

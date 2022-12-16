@@ -11,6 +11,7 @@ import { ImageSnippet } from 'src/app/shared/util/imagesnippet.model';
 })
 
 export class AddDancerComponent implements OnInit {
+  type = 'Dancer';
   selectedFile!: ImageSnippet;
   add: FormGroup;
   constructor(private matDialog: MatDialog,  public fb: FormBuilder, public db: DancerService) {     
