@@ -1,10 +1,10 @@
 <ng-container *ngIf="!showLoader">
-  <div *ngIf="this.authService.isLoggedIn == true">
+  <div *ngIf="this.url.path()==='/admin/dashboard'; else noLogin">
     <div>
       <router-outlet></router-outlet>
     </div>
   </div>
-  <div *ngIf="this.authService.isLoggedIn == false">
+ <ng-template #noLogin>
     <app-navbar></app-navbar>
     <div fxLayout="column" fxLayoutAlign="space-around center">
       <router-outlet>
@@ -13,6 +13,6 @@
         </div>
       </router-outlet>
     </div>
-  </div>
+  </ng-template>
 </ng-container>
 <app-loader *ngIf="showLoader"></app-loader>

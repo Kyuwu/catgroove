@@ -1,3 +1,4 @@
+import { LocationStrategy } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ChildrenOutletContexts, Router, RouterOutlet } from '@angular/router';
 import { Observable, Subscription, timer } from 'rxjs';
@@ -24,7 +25,7 @@ export class AppComponent {
   showLoader = true;
   loading: boolean = false;
 
-  constructor(public router: Router, public authService: AuthService, public loaderService: LoaderService, private changeDetector: ChangeDetectorRef) {}
+  constructor(public router: Router, public authService: AuthService, public loaderService: LoaderService, private changeDetector: ChangeDetectorRef, public url: LocationStrategy) {}
 
   ngOnInit(): void {
     this.setTimer();
