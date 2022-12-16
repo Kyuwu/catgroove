@@ -12,6 +12,7 @@
   <mat-toolbar *ngIf="authService.userData as user">
     <span>Hello, {{user.email}}</span>
     <span class="example-spacer"></span>
+    <button mat-flat-button color="primary" (click)="state = 'register'">Register Administrator</button>
     <button mat-flat-button (click)="drawer.toggle()">Toggle drawer</button>
     <button (click)="authService.SignOut()" mat-flat-button color="warn">Logout</button>
   </mat-toolbar>
@@ -23,6 +24,7 @@
       </ng-container>
       <ng-template #content>
         <div class="list-wrapper">
+          <app-register *ngIf="state=='register'"></app-register>
           <app-dancer-list *ngIf="state=='dancer'"></app-dancer-list>
           <app-staff-list *ngIf="state=='staff'"></app-staff-list>
         </div>

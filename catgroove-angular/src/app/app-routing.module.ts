@@ -97,11 +97,6 @@ const routes: Routes = [{
     data: { routeIdx: 9 }
   },
   {
-    path: 'admin/register',
-    component: RegisterComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'admin/login',
     component: LoginComponent
   },
