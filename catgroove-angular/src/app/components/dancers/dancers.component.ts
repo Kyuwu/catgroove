@@ -9,14 +9,14 @@ import { DancerService } from 'src/app/shared/services/firebase/dancer.service';
   styleUrls: ['./dancers.component.scss'],
 })
 export class DancersComponent implements OnInit {
-
+  type = "Dancers";
   constructor(private db: DancerService) { }
-  dancers!: Dancer[];
+  datas!: Dancer[];
   ngOnInit(): void {
-    this.retrieveDancers();
+    this.retrieveList();
   }
 
-  retrieveDancers(): void {
+  retrieveList(): void {
     this.db.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -28,7 +28,7 @@ export class DancersComponent implements OnInit {
       )
     ).subscribe(data => {
       console.log(data);
-        this.dancers = data;
+        this.datas = data;
     });
   }
 

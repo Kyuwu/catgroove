@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { StaffService } from 'src/app/shared/services/firebase/staff.service';
+import { ManagementService } from 'src/app/shared/services/firebase/management.service';
 import { ImageSnippet } from 'src/app/shared/util/imagesnippet.model';
 
 @Component({
-  selector: 'app-add-staff',
-  templateUrl: './add-staff.component.html',
-  styleUrls: ['./add-staff.component.scss']
+  selector: 'app-add-management',
+  templateUrl: './add-management.component.html',
+  styleUrls: ['./add-management.component.scss']
 })
-export class AddStaffComponent implements OnInit {
-  type = 'Staff';
+export class AddManagementComponent implements OnInit {
+  type = 'Management';
   selectedFile!: ImageSnippet;
   add: FormGroup;
-  constructor(public fb: FormBuilder, public db: StaffService) {     
+  constructor(public fb: FormBuilder, public db: ManagementService) {     
     this.add = this.fb.group({
       image: ['', Validators.required],
       name: ['', Validators.required],

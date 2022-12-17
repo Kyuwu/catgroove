@@ -1,1 +1,30 @@
-<p>services works!</p>
+<mat-card class="example-card">
+  <img mat-card-image src="../../../assets/images/{{type}}.webp">
+  <mat-card-title>{{type}}</mat-card-title>
+</mat-card>
+<!-- <div fxLayout="row wrap" *ngFor="let dancer of dancers">
+  <app-dancer-card fxFlex [dancer]="dancer"></app-dancer-card>
+</div> -->
+
+<!-- <mat-grid-list cols="2" rowHeight="1000px" >
+  <mat-grid-tile *ngFor="let data of datas">
+    <app-dancer-card fxFlex [dancer]="dancer"></app-dancer-card>
+  </mat-grid-tile>
+</mat-grid-list> -->
+
+<div *ngFor="let data of datas">
+  <div>
+    <mat-card>
+      <mat-card-header>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title>{{data.title}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{data.image}}" alt="NO IMAGE WTF">
+      <mat-card-content>
+        <p>
+          {{data.description}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

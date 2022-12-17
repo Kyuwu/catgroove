@@ -22,6 +22,10 @@
     <th mat-header-cell *matHeaderCellDef>Role/Job</th>
     <td mat-cell *matCellDef="let element">{{element.role}}</td>
   </ng-container>
+  <ng-container matColumnDef="bio">
+    <th mat-header-cell *matHeaderCellDef>Bio/Description</th>
+    <td mat-cell *matCellDef="let element">{{element.bio}}</td>
+  </ng-container>
 
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef> Actions for {{type}}</th>

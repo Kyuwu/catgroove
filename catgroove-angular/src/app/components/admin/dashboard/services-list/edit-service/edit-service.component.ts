@@ -1,29 +1,30 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import Staff from 'src/app/shared/models/staff';
-import { StaffService } from 'src/app/shared/services/firebase/staff.service';
+import Management from 'src/app/shared/models/management';
+import { ServicesService } from 'src/app/shared/services/firebase/services.service';
 import { ImageSnippet } from 'src/app/shared/util/imagesnippet.model';
 
 @Component({
-  selector: 'app-edit-staff',
-  templateUrl: './edit-staff.component.html',
-  styleUrls: ['./edit-staff.component.scss']
+  selector: 'app-edit-service',
+  templateUrl: './edit-service.component.html',
+  styleUrls: ['./edit-service.component.scss']
 })
-export class EditStaffComponent implements OnInit {
-  type = "Staff";
+export class EditServiceComponent implements OnInit {
+  type = "Service";
   selectedFile!: ImageSnippet;
   add: FormGroup;
-  data: Staff;
+  data: Management;
 
-  constructor(public fb: FormBuilder, public db: StaffService,
+  constructor(public fb: FormBuilder, public db: ServicesService,
     @Inject(MAT_DIALOG_DATA) data) {
-    // this.dialogRef = this.matDialog.open(AddDancerComponent);
     this.add = this.fb.group({
       image: [data.image, Validators.required],
-      name: [data.name, Validators.required],
-      role: [data.role, Validators.required],
-      bio: [data.bio, Validators.required],
+      title: [data.title, Validators.required],
+      description: [data.description, Validators.required],
+      reminder: [data.reminder, Validators.required],
+      price: [data.price, Validators.required],
+      minutes: [data.minutes, Validators.required],
     });
     this.data = data;
   }
@@ -44,5 +45,4 @@ export class EditStaffComponent implements OnInit {
     });
     reader.readAsDataURL(file);
   }
-
 }

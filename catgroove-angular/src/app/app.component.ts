@@ -1,9 +1,9 @@
 import { LocationStrategy } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ChildrenOutletContexts, Router, RouterOutlet } from '@angular/router';
-import { Observable, Subscription, timer } from 'rxjs';
+import { delay, Observable, Subscription, timer } from 'rxjs';
 import { AuthService } from './shared/services/auth.service';
-import { LoaderService } from './shared/services/spinner/loader.service';
+import { LoadingService } from './shared/services/loader.service';
 import { fader, stepper } from './shared/util/animation/animations';
 
 @Component({
@@ -25,7 +25,7 @@ export class AppComponent {
   showLoader = true;
   loading: boolean = false;
 
-  constructor(public router: Router, public authService: AuthService, public loaderService: LoaderService, private changeDetector: ChangeDetectorRef, public url: LocationStrategy) {}
+  constructor(public router: Router, public authService: AuthService, private changeDetector: ChangeDetectorRef, public url: LocationStrategy) {}
 
   ngOnInit(): void {
     this.setTimer();

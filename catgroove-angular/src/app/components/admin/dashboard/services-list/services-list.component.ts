@@ -3,23 +3,23 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs';
-import { StaffService } from 'src/app/shared/services/firebase/staff.service';
+import { ServicesService } from 'src/app/shared/services/firebase/services.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
-import { AddStaffComponent } from './add-staff/add-staff.component';
-import { EditStaffComponent } from './edit-staff/edit-staff.component';
+import { AddServiceComponent } from './add-service/add-service.component';
+import { EditServiceComponent } from './edit-service/edit-service.component';
 
 @Component({
-  selector: 'app-staff-list',
-  templateUrl: './staff-list.component.html',
-  styleUrls: ['./staff-list.component.scss']
+  selector: 'app-services-list',
+  templateUrl: './services-list.component.html',
+  styleUrls: ['./services-list.component.scss']
 })
-export class StaffListComponent implements OnInit {
+export class ServicesListComponent implements OnInit {
 
-  type = "Staff";
-  types = "Staff";
-  displayedColumns: string[] = ['key', 'name', 'role', 'bio', 'action'];
+  type = "Service";
+  types = "Services";
+  displayedColumns: string[] = ['key', 'title', 'description', 'reminder', 'price', 'minutes', 'action'];
   dataSource = new MatTableDataSource();
-  constructor(private db: StaffService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditStaffComponent > ) {}
+  constructor(private db: ServicesService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditServiceComponent > ) {}
   ngOnInit(): void {
     this.retrieveList();
   }
@@ -45,7 +45,7 @@ export class StaffListComponent implements OnInit {
   }
 
   add() {
-    const dialogRef = this.dialog.open(AddStaffComponent);
+    const dialogRef = this.dialog.open(AddServiceComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.snackbar.add(`Added ${this.type}`, '');
@@ -55,12 +55,12 @@ export class StaffListComponent implements OnInit {
   }
 
   edit(data: any) {
-    const dialogRef = this.dialog.open(EditStaffComponent, {
+    const dialogRef = this.dialog.open(EditServiceComponent, {
       data: data
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.snackbar.update(`Updated ${this.type}: ${data.name}`, '');
+        this.snackbar.update(`Updated ${this.type}: ${data.title}`, '');
       }
       this.refreshList();
     });
@@ -70,7 +70,7 @@ export class StaffListComponent implements OnInit {
     if (data.key) {
       this.db.delete(data.key)
         .then(() => {
-          this.snackbar.delete(`Deleted  ${this.type}: ${data.name}`, '');
+          this.snackbar.delete(`Deleted  ${this.type}: ${data.title}`, '');
         })
         .catch(err => console.log(err));
     }
@@ -81,5 +81,6 @@ export class StaffListComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
 
 }

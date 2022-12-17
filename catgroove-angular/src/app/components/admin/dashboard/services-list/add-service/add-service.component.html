@@ -2,16 +2,24 @@
 <mat-dialog-content>
   <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch" style="max-width: 30vw;">
     <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
-      <input formControlName="name" matInput>
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Role/Job</mat-label>
-      <input formControlName="role" matInput>
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Bio/Description</mat-label>
-      <input formControlName="bio" matInput>
+      <mat-label>Reminder</mat-label>
+      <input formControlName="reminder" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input type="number" formControlName="price" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Minutes</mat-label>
+      <input type="number" formControlName="minutes" matInput>
     </mat-form-field>
     <div class="img-banner">
       <mat-accordion>

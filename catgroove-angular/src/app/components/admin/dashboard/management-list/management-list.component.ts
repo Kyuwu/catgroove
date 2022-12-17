@@ -3,23 +3,23 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs';
-import { StaffService } from 'src/app/shared/services/firebase/staff.service';
+import { ManagementService } from 'src/app/shared/services/firebase/management.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
-import { AddStaffComponent } from './add-staff/add-staff.component';
-import { EditStaffComponent } from './edit-staff/edit-staff.component';
+import { AddManagementComponent } from './add-management/add-management.component';
+import { EditManagementComponent } from './edit-management/edit-management.component';
 
 @Component({
-  selector: 'app-staff-list',
-  templateUrl: './staff-list.component.html',
-  styleUrls: ['./staff-list.component.scss']
+  selector: 'app-management-list',
+  templateUrl: './management-list.component.html',
+  styleUrls: ['./management-list.component.scss']
 })
-export class StaffListComponent implements OnInit {
+export class ManagementListComponent implements OnInit {
 
-  type = "Staff";
-  types = "Staff";
+  type = "Management";
+  types = "Management";
   displayedColumns: string[] = ['key', 'name', 'role', 'bio', 'action'];
   dataSource = new MatTableDataSource();
-  constructor(private db: StaffService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditStaffComponent > ) {}
+  constructor(private db: ManagementService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditManagementComponent > ) {}
   ngOnInit(): void {
     this.retrieveList();
   }
@@ -45,7 +45,7 @@ export class StaffListComponent implements OnInit {
   }
 
   add() {
-    const dialogRef = this.dialog.open(AddStaffComponent);
+    const dialogRef = this.dialog.open(AddManagementComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.snackbar.add(`Added ${this.type}`, '');
@@ -55,7 +55,7 @@ export class StaffListComponent implements OnInit {
   }
 
   edit(data: any) {
-    const dialogRef = this.dialog.open(EditStaffComponent, {
+    const dialogRef = this.dialog.open(EditManagementComponent, {
       data: data
     });
     dialogRef.afterClosed().subscribe(result => {

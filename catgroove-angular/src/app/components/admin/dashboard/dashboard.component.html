@@ -10,23 +10,43 @@
   </div>
    -->
   <mat-toolbar *ngIf="authService.userData as user">
-    <span>Hello, {{user.email}}</span>
+    <div class="example-button-container">
+      <button mat-mini-fab color="primary" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="example-button-container">
+      <button mat-mini-fab (click)="state = 'register'"  matTooltip="Register a new Administrator" matTooltipPosition="right">
+        <mat-icon>person_add</mat-icon>
+      </button>
+    </div>
     <span class="example-spacer"></span>
-    <button mat-flat-button color="primary" (click)="state = 'register'">Register Administrator</button>
-    <button mat-flat-button (click)="drawer.toggle()">Toggle drawer</button>
-    <button (click)="authService.SignOut()" mat-flat-button color="warn">Logout</button>
+    <div class="example-button-container">
+      <button mat-mini-fab (click)="state = 'home'">
+        <mat-icon>home</mat-icon>
+      </button>
+    </div>
+    <div class="example-button-container">
+      <button mat-mini-fab color="warn" matTooltip="Logout from current user" matTooltipPosition="left" (click)="authService.SignOut()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
   </mat-toolbar>
   <mat-drawer-container class="example-container" hasBackdrop="false">
-
     <mat-drawer-content>
       <ng-container *ngIf="loading; else content">
-        <circle-spinner></circle-spinner>
+        <mat-progress-spinner
+          color="primary"
+          mode="indeterminate">
+        </mat-progress-spinner>
       </ng-container>
       <ng-template #content>
         <div class="list-wrapper">
-          <app-home *ngIf="state=='home'"></app-home>
+          <app-home-admin *ngIf="state=='home'"></app-home-admin>
           <app-register *ngIf="state=='register'"></app-register>
+          <app-management-list *ngIf="state=='management'"></app-management-list>
           <app-dancer-list *ngIf="state=='dancer'"></app-dancer-list>
+          <app-services-list *ngIf="state=='services'"></app-services-list>
           <app-staff-list *ngIf="state=='staff'"></app-staff-list>
         </div>
       </ng-template>

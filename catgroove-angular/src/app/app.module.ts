@@ -38,6 +38,15 @@ import { EditStaffComponent } from './components/admin/dashboard/staff-list/edit
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TwitchComponent } from './components/admin/dashboard/home/twitch/twitch.component';
 import { OpeningComponent } from './components/admin/dashboard/home/opening/opening.component';
+import { HomeAdminComponent } from './components/admin/dashboard/home/home.component';
+import { ManagementListComponent } from './components/admin/dashboard/management-list/management-list.component';
+import { AddManagementComponent } from './components/admin/dashboard/management-list/add-management/add-management.component';
+import { EditManagementComponent } from './components/admin/dashboard/management-list/edit-management/edit-management.component';
+import { AddServiceComponent } from './components/admin/dashboard/services-list/add-service/add-service.component';
+import { EditServiceComponent } from './components/admin/dashboard/services-list/edit-service/edit-service.component';
+import { ServicesListComponent } from './components/admin/dashboard/services-list/services-list.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequestInterceptor } from './shared/services/interceptors/http-request.interceptor';
 
 
 @NgModule({
@@ -46,7 +55,7 @@ import { OpeningComponent } from './components/admin/dashboard/home/opening/open
     AppComponent,
     LoaderComponent,
     NavbarComponent,
-    HomeComponent,
+    HomeAdminComponent,
     SpinnerComponent,
     //navbar
     ManagementComponent,
@@ -74,7 +83,15 @@ import { OpeningComponent } from './components/admin/dashboard/home/opening/open
     //staff
     StaffListComponent,
     AddStaffComponent,
-    EditStaffComponent
+    EditStaffComponent,
+    //management
+    ManagementListComponent,
+    AddManagementComponent,
+    EditManagementComponent,
+    //service
+    ServicesListComponent,
+    AddServiceComponent,
+    EditServiceComponent,
   ],
   imports: [
     AngularMaterialModule,
@@ -90,7 +107,12 @@ import { OpeningComponent } from './components/admin/dashboard/home/opening/open
     // AngularFireStorageModule,
     // AngularFireDatabaseModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: HttpRequestInterceptor, 
+      multi: true 
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

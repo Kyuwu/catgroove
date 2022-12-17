@@ -1,17 +1,25 @@
-<h2 mat-dialog-title>Add {{type}}</h2>
+<h2 mat-dialog-title>Edit {{type}}</h2>
 <mat-dialog-content>
   <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch" style="max-width: 30vw;">
     <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
-      <input formControlName="name" matInput>
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Role/Job</mat-label>
-      <input formControlName="role" matInput>
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Bio/Description</mat-label>
-      <input formControlName="bio" matInput>
+      <mat-label>Reminder</mat-label>
+      <input formControlName="reminder" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input type="number" formControlName="price" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Minutes</mat-label>
+      <input type="number" formControlName="minutes" matInput>
     </mat-form-field>
     <div class="img-banner">
       <mat-accordion>
@@ -25,7 +33,7 @@
             <div class="img-wrapper">
               <img mat-card-image name="image" src="{{selectedFile.src}}" *ngIf="selectedFile; else fillerImage">
               <ng-template #fillerImage>
-                <img mat-card-image src="../../../../../../assets/images/dummy.png  ">
+                <img mat-card-image src="{{data.image}}">
               </ng-template>
             </div>
           </div>
@@ -38,8 +46,8 @@
       <a mat-flat-button color="accent" class="upload-btn" (click)="fileUpload.click()">
         <mat-icon>attach_file</mat-icon>Upload image
       </a>
-      <button mat-flat-button color="primary" [disabled]="!add.valid" [mat-dialog-close]="true" (click)="submit()">Add
-        {{type}}</button>
+      <button mat-flat-button color="primary" [disabled]="!add.valid" [mat-dialog-close]="true"
+        (click)="submit()">Update {{type}}</button>
       <button mat-flat-button color="warn" mat-dialog-close>Close</button>
     </mat-dialog-actions>
   </form>
