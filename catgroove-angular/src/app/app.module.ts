@@ -46,6 +46,7 @@ import { ThemeComponent } from './components/admin/dashboard/home/home-theme/the
 import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader'; // <============
 import { Providers } from './provider.module';
+import { TwitchPlayerComponent } from './components/home/twitch-player/twitch-player.component';
 
 
 
@@ -91,6 +92,8 @@ import { Providers } from './provider.module';
     ServicesListComponent,
     AddServiceComponent,
     EditServiceComponent,
+    //home
+    TwitchPlayerComponent
   ],
   imports: [
     AngularMaterialModule,
