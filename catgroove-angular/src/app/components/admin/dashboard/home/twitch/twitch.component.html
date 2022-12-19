@@ -1,1 +1,18 @@
-<p>twitch works!</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Twitch settings
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-label>Add only the channel name here</mat-label>
+    <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch" style="max-width: 30vw;">
+      <mat-form-field appearance="fill">
+        <mat-label>Twitch Channel</mat-label>
+        <input formControlName="channel" matInput>
+      </mat-form-field>
+      <button mat-flat-button color="success" [disabled]="!add.valid" (click)="submit()">Save channel</button>
+    </form>
+
+  </mat-expansion-panel>
+</mat-accordion>

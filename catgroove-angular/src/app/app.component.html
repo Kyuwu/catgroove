@@ -1,14 +1,20 @@
-<ng-container *ngIf="!showLoader">
+
+<ng-container *ngIf="showLoader">
   <div *ngIf="this.url.path()==='/admin/dashboard'; else noLogin">
     <div>
-      <router-outlet></router-outlet>
+      <router-outlet><div fxLayoutAlign="center center" *ngIf="loaderService.isLoading | async" class="loader-container">
+        <mat-spinner strokeWidth="3" diameter="40" color="light-primary-text"></mat-spinner>
+      </div>  </router-outlet>
     </div>
   </div>
  <ng-template #noLogin>
     <app-navbar></app-navbar>
     <div fxLayout="column" fxLayoutAlign="space-around center">
-      <router-outlet></router-outlet>
+      <router-outlet><div fxLayoutAlign="center center" *ngIf="loaderService.isLoading | async" class="loader-container">
+        <mat-spinner strokeWidth="3" diameter="40" color="light-primary-text"></mat-spinner>
+      </div></router-outlet>
     </div>
   </ng-template>
 </ng-container>
-<app-loader *ngIf="showLoader"></app-loader>
+
+<!-- <app-loader *ngIf="_loader"></app-loader> -->

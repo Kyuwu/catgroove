@@ -16,7 +16,8 @@
       </button>
     </div>
     <div class="example-button-container">
-      <button mat-mini-fab (click)="state = 'register'"  matTooltip="Register a new Administrator" matTooltipPosition="right">
+      <button mat-mini-fab (click)="state = 'register'" matTooltip="Register a new Administrator"
+        matTooltipPosition="right">
         <mat-icon>person_add</mat-icon>
       </button>
     </div>
@@ -27,29 +28,22 @@
       </button>
     </div>
     <div class="example-button-container">
-      <button mat-mini-fab color="warn" matTooltip="Logout from current user" matTooltipPosition="left" (click)="authService.SignOut()">
+      <button mat-mini-fab color="warn" matTooltip="Logout from current user" matTooltipPosition="left"
+        (click)="authService.SignOut()">
         <mat-icon>logout</mat-icon>
       </button>
     </div>
   </mat-toolbar>
   <mat-drawer-container class="example-container" hasBackdrop="false">
     <mat-drawer-content>
-      <ng-container *ngIf="loading; else content">
-        <mat-progress-spinner
-          color="primary"
-          mode="indeterminate">
-        </mat-progress-spinner>
-      </ng-container>
-      <ng-template #content>
-        <div class="list-wrapper">
-          <app-home-admin *ngIf="state=='home'"></app-home-admin>
-          <app-register *ngIf="state=='register'"></app-register>
-          <app-management-list *ngIf="state=='management'"></app-management-list>
-          <app-dancer-list *ngIf="state=='dancer'"></app-dancer-list>
-          <app-services-list *ngIf="state=='services'"></app-services-list>
-          <app-staff-list *ngIf="state=='staff'"></app-staff-list>
-        </div>
-      </ng-template>
+      <div class="list-wrapper">
+        <app-home-admin *ngIf="state=='home'"></app-home-admin>
+        <app-register *ngIf="state=='register'"></app-register>
+        <app-management-list *ngIf="state=='management'"></app-management-list>
+        <app-dancer-list *ngIf="state=='dancer'"></app-dancer-list>
+        <app-services-list *ngIf="state=='services'"></app-services-list>
+        <app-staff-list *ngIf="state=='staff'"></app-staff-list>
+      </div>
     </mat-drawer-content>
     <mat-drawer #drawer mode="over">
       <div class="button-wrapper">

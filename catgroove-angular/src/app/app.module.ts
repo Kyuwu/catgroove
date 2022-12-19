@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { ManagementComponent } from './components/management/management.component';
 import { StaffComponent } from './components/staff/staff.component';
@@ -22,7 +22,6 @@ import { LoginComponent } from './components/admin/login/login.component';
 import { RegisterComponent } from './components/admin/register/register.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './shared/services/auth.service';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -35,9 +34,7 @@ import { EditDancerComponent } from './components/admin/dashboard/dancer-list/ed
 import { DancerCardComponent } from './components/dancers/dancer-card/dancer-card.component';
 import { AddStaffComponent } from './components/admin/dashboard/staff-list/add-staff/add-staff.component';
 import { EditStaffComponent } from './components/admin/dashboard/staff-list/edit-staff/edit-staff.component';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TwitchComponent } from './components/admin/dashboard/home/twitch/twitch.component';
-import { OpeningComponent } from './components/admin/dashboard/home/opening/opening.component';
 import { HomeAdminComponent } from './components/admin/dashboard/home/home.component';
 import { ManagementListComponent } from './components/admin/dashboard/management-list/management-list.component';
 import { AddManagementComponent } from './components/admin/dashboard/management-list/add-management/add-management.component';
@@ -45,8 +42,11 @@ import { EditManagementComponent } from './components/admin/dashboard/management
 import { AddServiceComponent } from './components/admin/dashboard/services-list/add-service/add-service.component';
 import { EditServiceComponent } from './components/admin/dashboard/services-list/edit-service/edit-service.component';
 import { ServicesListComponent } from './components/admin/dashboard/services-list/services-list.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpRequestInterceptor } from './shared/services/interceptors/http-request.interceptor';
+import { ThemeComponent } from './components/admin/dashboard/home/home-theme/theme.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgHttpLoaderModule } from 'ng-http-loader'; // <============
+import { Providers } from './provider.module';
+
 
 
 @NgModule({
@@ -56,7 +56,6 @@ import { HttpRequestInterceptor } from './shared/services/interceptors/http-requ
     LoaderComponent,
     NavbarComponent,
     HomeAdminComponent,
-    SpinnerComponent,
     //navbar
     ManagementComponent,
     StaffComponent,
@@ -71,7 +70,7 @@ import { HttpRequestInterceptor } from './shared/services/interceptors/http-requ
     //admin
     HomeComponent,
     TwitchComponent,
-    OpeningComponent,
+    ThemeComponent,
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
@@ -99,6 +98,8 @@ import { HttpRequestInterceptor } from './shared/services/interceptors/http-requ
     ReactiveFormsModule ,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    NgHttpLoaderModule.forRoot(), // <============ Don't forget to call 'forRoot()'!
     BrowserAnimationsModule,
     FlexLayoutModule, 
     AngularFireModule.initializeApp(environment.firebase),
@@ -107,12 +108,9 @@ import { HttpRequestInterceptor } from './shared/services/interceptors/http-requ
     // AngularFireStorageModule,
     // AngularFireDatabaseModule,
   ],
-  providers: [AuthService,
-    { 
-      provide: HTTP_INTERCEPTORS, 
-      useClass: HttpRequestInterceptor, 
-      multi: true 
-    }],
+  providers: [
+    Providers,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

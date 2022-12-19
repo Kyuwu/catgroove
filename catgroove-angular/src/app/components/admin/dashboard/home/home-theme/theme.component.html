@@ -1,0 +1,34 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Theme settings
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch">
+      <mat-form-field appearance="fill">
+        <mat-label>Theme title</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea  formControlName="description" matInput></textarea>
+      </mat-form-field>
+      <input #imageInput id="file-upload" type="file" accept="image/x-png,image/jpeg,image/jpg,image"
+        (change)="processFile(imageInput)" #fileUpload>
+      <a fxFill="50" mat-flat-button color="accent" class="upload-btn" (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>Upload image
+      </a>
+      <div class="img-div-wrapper">
+        <div class="img-wrapper">
+          <img mat-card-image name="image" src="{{selectedFile.src}}" *ngIf="selectedFile; else fillerImage">
+          <ng-template #fillerImage>
+            <img mat-card-image src="{{data.image}}">
+          </ng-template>
+        </div>
+      </div>
+    </form>
+    <button fxFill="50" mat-flat-button color="success" [disabled]="!add.valid" (click)="submit()">Save theme
+      image</button>
+  </mat-expansion-panel>
+</mat-accordion>
