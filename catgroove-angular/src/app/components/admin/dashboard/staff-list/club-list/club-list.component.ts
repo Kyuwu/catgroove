@@ -3,23 +3,27 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs';
-import { ServicesService } from 'src/app/shared/services/firebase/services.service';
+import Staff from 'src/app/shared/models/staff';
+import { ClubService } from 'src/app/shared/services/firebase/club.service';
+import { StaffService } from 'src/app/shared/services/firebase/staff.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
-import { AddServiceComponent } from './add-service/add-service.component';
-import { EditServiceComponent } from './edit-service/edit-service.component';
+import { AddClubComponent } from './add-club/add-club.component';
+import { EditClubComponent } from './edit-club/edit-club.component';
 
 @Component({
-  selector: 'app-services-list',
-  templateUrl: './services-list.component.html',
-  styleUrls: ['./services-list.component.scss']
+  selector: 'app-club-list',
+  templateUrl: './club-list.component.html',
+  styleUrls: ['./club-list.component.scss']
 })
-export class ServicesListComponent implements OnInit {
+export class ClubListComponent implements OnInit {
 
-  type = "Service";
-  types = "Services";
-  displayedColumns: string[] = ['title', 'description', 'reminder', 'price', 'minutes', 'action'];
+  type = "Club";
+  types = "Clubs";
+  merged = '';
+  staffList: any;
+  displayedColumns: string[] = ['name', 'location', 'description', 'action'];
   dataSource = new MatTableDataSource();
-  constructor(private db: ServicesService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditServiceComponent > ) {}
+  constructor(private db: ClubService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditClubComponent > ) {}
   ngOnInit(): void {
     this.retrieveList();
   }
@@ -45,7 +49,7 @@ export class ServicesListComponent implements OnInit {
   }
 
   add() {
-    const dialogRef = this.dialog.open(AddServiceComponent);
+    const dialogRef = this.dialog.open(AddClubComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.snackbar.add(`Added ${this.type}`, '');
@@ -53,14 +57,17 @@ export class ServicesListComponent implements OnInit {
       this.refreshList();
     });
   }
+  set(data: any) {
+    this.staffList = data;
+  }
 
   edit(data: any) {
-    const dialogRef = this.dialog.open(EditServiceComponent, {
+    const dialogRef = this.dialog.open(EditClubComponent, {
       data: data
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.snackbar.update(`Updated ${this.type}: ${data.title}`, '');
+        this.snackbar.update(`Updated ${this.type}: ${data.name}`, '');
       }
       this.refreshList();
     });
@@ -70,7 +77,7 @@ export class ServicesListComponent implements OnInit {
     if (data.key) {
       this.db.delete(data.key)
         .then(() => {
-          this.snackbar.delete(`Deleted  ${this.type}: ${data.title}`, '');
+          this.snackbar.delete(`Deleted  ${this.type}: ${data.name}`, '');
         })
         .catch(err => console.log(err));
     }
@@ -81,6 +88,5 @@ export class ServicesListComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-
 
 }

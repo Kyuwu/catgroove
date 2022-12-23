@@ -3,4 +3,5 @@ export default class Theme {
     key?: string | null;
     name?: string;
     description?: string;
+    location?: string;
   }

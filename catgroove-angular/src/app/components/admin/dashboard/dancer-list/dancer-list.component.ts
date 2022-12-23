@@ -38,7 +38,7 @@ export class DancerListComponent implements AfterViewInit {
 
   type = "Dancer";
   types = "Dancers";
-  displayedColumns: string[] = ['key', 'name', 'age', 'language', 'nsfw', 'orientation', 'sexual preference', 'services', 'bio/description', 'action'];
+  displayedColumns: string[] = ['name', 'age', 'language', 'nsfw', 'orientation', 'preference', 'services', 'bio/description', 'action'];
   dataSource = new MatTableDataSource();
   constructor(private db: DancerService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditDancerComponent > ) {}
   ngOnInit(): void {

@@ -47,6 +47,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader'; // <============
 import { Providers } from './provider.module';
 import { TwitchPlayerComponent } from './components/home/twitch-player/twitch-player.component';
+import { ClubListComponent } from './components/admin/dashboard/staff-list/club-list/club-list.component';
+import { AddClubComponent } from './components/admin/dashboard/staff-list/club-list/add-club/add-club.component';
+import { EditClubComponent } from './components/admin/dashboard/staff-list/club-list/edit-club/edit-club.component';
+import { CustomMaterialComponent } from './shared/components/custom-material/custom-material.component';
 
 
 
@@ -81,6 +85,9 @@ import { TwitchPlayerComponent } from './components/home/twitch-player/twitch-pl
     AddDancerComponent,
     EditDancerComponent,
     //staff
+    ClubListComponent,
+    AddClubComponent,
+    EditClubComponent,
     StaffListComponent,
     AddStaffComponent,
     EditStaffComponent,
@@ -93,7 +100,9 @@ import { TwitchPlayerComponent } from './components/home/twitch-player/twitch-pl
     AddServiceComponent,
     EditServiceComponent,
     //home
-    TwitchPlayerComponent
+    TwitchPlayerComponent,
+    //shared
+    CustomMaterialComponent,
   ],
   imports: [
     AngularMaterialModule,

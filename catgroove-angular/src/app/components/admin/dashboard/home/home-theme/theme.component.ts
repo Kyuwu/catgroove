@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { map } from 'rxjs';
+import Club from 'src/app/shared/models/club';
 import Theme from 'src/app/shared/models/theme';
+import { ClubService } from 'src/app/shared/services/firebase/club.service';
 import { ThemeService } from 'src/app/shared/services/firebase/theme.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { ImageSnippet } from 'src/app/shared/util/imagesnippet.model';
@@ -12,28 +14,29 @@ import { ImageSnippet } from 'src/app/shared/util/imagesnippet.model';
   styleUrls: ['./theme.component.scss']
 })
 export class ThemeComponent implements OnInit {
-  
+  clubs: Club[];
   add: FormGroup;
   key: string;
   data: Theme = new Theme();
   selectedFile!: ImageSnippet;
 
-  constructor(private db: ThemeService, public snackbar: SnackbarService, public fb: FormBuilder) {    
+  constructor(private db: ThemeService, public club: ClubService, public snackbar: SnackbarService, public fb: FormBuilder) {    
     this.add = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
+      location: ['', Validators.required],
       image: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
+    this.clubs = this.club.getClubsCall();
     this.retrieveList();
   }
 
-  refreshList(): void {
-    this.retrieveList();
+  get() {
+    this.clubs = this.club.getClubs();
   }
-
   retrieveList(): void {
     this.db.getAll().snapshotChanges().pipe(
       map(changes =>
@@ -49,6 +52,7 @@ export class ThemeComponent implements OnInit {
       this.add.controls['name'].setValue(data[0].name);
       this.add.controls['description'].setValue(data[0].description);
       this.add.controls['image'].setValue(data[0].image);
+      this.add.controls['location'].setValue(data[0].location);
       this.data = data[0];
     });
   }

@@ -17,7 +17,7 @@ export class ManagementListComponent implements OnInit {
 
   type = "Management";
   types = "Management";
-  displayedColumns: string[] = ['key', 'name', 'role', 'bio', 'action'];
+  displayedColumns: string[] = ['name', 'role', 'bio', 'action'];
   dataSource = new MatTableDataSource();
   constructor(private db: ManagementService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditManagementComponent > ) {}
   ngOnInit(): void {
