@@ -30,12 +30,12 @@ export class TwitchPlayerComponent implements OnInit {
       )
     ).subscribe(data => {
       console.log(data);
-        const embed = new TwitchEmbed('player', {
-          width: 1280,
-          height: 720,
-          channel: `${data[0].channel}`,
-          layout: TwitchEmbedLayout.VIDEO_WITH_CHAT
-        });
+        // const embed = new TwitchEmbed('player', {
+        //   width: 1280,
+        //   height: 720,
+        //   channel: `${data[0].channel}`,
+        //   layout: TwitchEmbedLayout.VIDEO_WITH_CHAT
+        // });
     });
   }
 
