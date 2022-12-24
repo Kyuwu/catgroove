@@ -281,8 +281,12 @@ table {
 .full-width {
   width: 100%;
 }
-
-
+th button {
+  width: 8vw;
+}
+td button {
+  width: 4vw;
+}
 
 th.mat-header-cell,
 td.mat-cell,
