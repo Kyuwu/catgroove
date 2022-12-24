@@ -5,53 +5,54 @@
       <mat-label>Name</mat-label>
       <input formControlName="name" matInput>
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput>
+    </mat-form-field>
     <table cellspacing="0">
       <tr>
         <td>
           <mat-form-field appearance="fill" class="full-width">
-            <mat-label>Age</mat-label>
-            <input type="number" formControlName="age" matInput>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label>Language</mat-label>
-            <input formControlName="language" matInput>
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
-    <table cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field appearance="fill" class="full-width">
-            <mat-label>NSFW</mat-label>
-            <mat-select formControlName="nsfw">
-              <mat-option value="True">True</mat-option>
-              <mat-option value="False">False</mat-option>
+            <mat-label>Datacenter</mat-label>
+            <mat-select formControlName="datacenter">
+              <mat-option *ngFor="let dc of datacenters" [value]="dc.name">{{ dc.name }}</mat-option>
             </mat-select>
           </mat-form-field>
         </td>
         <td>
           <mat-form-field appearance="fill" class="full-width">
-            <mat-label>Orientation</mat-label>
-            <input formControlName="orientation" matInput>
+            <mat-label>Server</mat-label>
+            <mat-select formControlName="server">
+              <div *ngFor="let dc of datacenters">
+                <mat-option *ngFor="let server of dc.servers" [value]="server.name">{{ server.name }}</mat-option>
+              </div>
+            </mat-select>
           </mat-form-field>
         </td>
       </tr>
     </table>
-    <mat-form-field appearance="fill">
-      <mat-label>Preference</mat-label>
-      <input matInput formControlName="pref">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Area</mat-label>
+      <mat-select formControlName="area">
+        <mat-option *ngFor="let area of areas" [value]="area.name">{{ area.name }}</mat-option>
+      </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Services</mat-label>
-      <input matInput formControlName="services">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Bio/Description</mat-label>
-      <textarea matInput formControlName="bio"></textarea>
-    </mat-form-field>
+    <table cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Ward</mat-label>
+            <input type="number" matInput formControlName="ward">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Plot</mat-label>
+            <input type="number" matInput formControlName="plot">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
     <div class="img-banner">
       <mat-accordion>
         <mat-expansion-panel>

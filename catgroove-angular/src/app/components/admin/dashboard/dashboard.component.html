@@ -42,13 +42,13 @@
         <app-management-list *ngIf="state=='management'"></app-management-list>
         <app-dancer-list *ngIf="state=='dancer'"></app-dancer-list>
         <app-services-list *ngIf="state=='services'"></app-services-list>
-        <app-staff-list *ngIf="state=='staff'"></app-staff-list>
+        <app-club-list *ngIf="state=='staff'"></app-club-list>
       </div>
     </mat-drawer-content>
     <mat-drawer #drawer mode="over">
       <div class="button-wrapper">
         <button mat-flat-button color="primary" (click)="state = 'management'">MANAGEMENT</button>
-        <button mat-flat-button color="primary" (click)="state = 'staff'">STAFF</button>
+        <button mat-flat-button color="primary" (click)="state = 'staff'">CLUBS/STAFF</button>
         <button mat-flat-button color="primary" (click)="state = 'dancer'">DANCERS</button>
         <button mat-flat-button color="primary" (click)="state = 'services'">SERVICES</button>
         <button mat-flat-button color="primary" (click)="state = 'vip'">VIP</button>

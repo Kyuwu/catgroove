@@ -1,41 +1,41 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { map } from 'rxjs';
 import Club from 'src/app/shared/models/club';
-import Staff from 'src/app/shared/models/staff';
 import { ClubService } from 'src/app/shared/services/firebase/club.service';
 import { StaffService } from 'src/app/shared/services/firebase/staff.service';
+import { areas, datacenters } from 'src/app/shared/services/staticdata';
 import { ImageSnippet } from 'src/app/shared/util/imagesnippet.model';
 
 @Component({
-  selector: 'app-edit-staff',
-  templateUrl: './edit-staff.component.html',
-  styleUrls: ['./edit-staff.component.scss']
+  selector: 'app-edit-club',
+  templateUrl: './edit-club.component.html',
+  styleUrls: ['./edit-club.component.scss']
 })
-export class EditStaffComponent implements OnInit {
-  type = "Staff";
+export class EditClubComponent {
+  type = "Club";
   selectedFile!: ImageSnippet;
   add: FormGroup;
-  clubs: Club[];
-  data: Staff;
+  data: Club;
+  areas = areas;
+  datacenters = datacenters;
 
-  constructor(public fb: FormBuilder, public db: StaffService, public club: ClubService,
+  constructor(public fb: FormBuilder, public db: ClubService,
     @Inject(MAT_DIALOG_DATA) data) {
-    this.clubs = club.getClubs();
+    // this.dialogRef = this.matDialog.open(AddDancerComponent);
     this.add = this.fb.group({
       image: [data.image, Validators.required],
-      club: [data.club, Validators.required],
       name: [data.name, Validators.required],
-      role: [data.role, Validators.required],
-      bio: [data.bio, Validators.required],
+      description: [data.description, Validators.required],
+      datacenter: [data.datacenter, Validators.required],
+      server: [data.server, Validators.required],
+      area: [data.area, Validators.required],
+      ward: [data.ward, Validators.required],
+      plot: [data.plot, Validators.required],
     });
     this.data = data;
   }
 
-  ngOnInit(): void {
-    // console.log(data)
-  }
   submit() {
     this.db.update(this.data.key, this.add.value);
   }

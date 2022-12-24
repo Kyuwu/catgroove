@@ -5,27 +5,43 @@
       <mat-label>Name</mat-label>
       <input formControlName="name" matInput>
     </mat-form-field>
+    <table cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Age</mat-label>
+            <input type="number" formControlName="age" matInput>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Language</mat-label>
+            <input formControlName="language" matInput>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>NSFW</mat-label>
+            <mat-select formControlName="nsfw">
+              <mat-option value="True">True</mat-option>
+              <mat-option value="False">False</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Orientation</mat-label>
+            <input formControlName="orientation" matInput>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
     <mat-form-field appearance="fill">
-      <mat-label>Age</mat-label>
-      <input type="number" formControlName="age" matInput>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Language</mat-label>
-      <input formControlName="language" matInput>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>NSFW</mat-label>
-      <mat-select formControlName="nsfw">
-        <mat-option value="True">True</mat-option>
-        <mat-option value="False">False</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Orientation</mat-label>
-      <input formControlName="orientation" matInput>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Sexual preference</mat-label>
+      <mat-label>Preference</mat-label>
       <input matInput formControlName="pref">
     </mat-form-field>
     <mat-form-field appearance="fill">

@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs';
+import Club from 'src/app/shared/models/club';
+import { ClubService } from 'src/app/shared/services/firebase/club.service';
 import { StaffService } from 'src/app/shared/services/firebase/staff.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { AddStaffComponent } from './add-staff/add-staff.component';
@@ -17,15 +19,24 @@ export class StaffListComponent implements OnInit {
 
   type = "Staff";
   types = "Staff";
-  displayedColumns: string[] = ['key', 'name', 'role', 'bio', 'action'];
+  clubs: Club[];
+  displayedColumns: string[] = ['club', 'name', 'role', 'bio', 'action'];
   dataSource = new MatTableDataSource();
-  constructor(private db: StaffService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditStaffComponent > ) {}
+  constructor(public db: StaffService, public club: ClubService, public dialog: MatDialog, public snackbar: SnackbarService, public dialogRef: MatDialogRef < EditStaffComponent > ) { }
   ngOnInit(): void {
+    this.club.setClubs();
     this.retrieveList();
   }
 
   refreshList(): void {
     this.retrieveList();
+    // this.applyFilter("Spectrum");
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 
   retrieveList(): void {
@@ -39,8 +50,22 @@ export class StaffListComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      console.log(data);
       this.dataSource.data = data;
+    });
+  }
+
+  retrieveClubs(): void {
+    this.club.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({
+            key: c.payload.key,
+            ...c.payload.val(),
+          })
+        )
+      )
+    ).subscribe(data => {
+      this.clubs = data;
     });
   }
 
@@ -81,5 +106,4 @@ export class StaffListComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-
 }

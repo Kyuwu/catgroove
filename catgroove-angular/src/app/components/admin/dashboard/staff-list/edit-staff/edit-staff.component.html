@@ -6,6 +6,13 @@
       <input formControlName="name" matInput>
     </mat-form-field>
     <mat-form-field appearance="fill">
+      <mat-label>Clubs</mat-label>
+      <mat-select #sl formControlName="club" multiple>
+        <mat-option *ngFor="let club of clubs" [value]="club.name">{{ club.name }}</mat-option>
+        <!-- <button mat-flat-button color="warn" (click)="sl.close()">owo</button> -->
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>Role/Job</mat-label>
       <input formControlName="role" matInput>
     </mat-form-field>
