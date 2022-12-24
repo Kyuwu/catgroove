@@ -50,6 +50,7 @@ mat-card {
   background-color: black !important;
   color: white !important;
   font-weight: 700 !important;
+  border-radius: 0 !important;
 }
 
 ::selection {
@@ -265,6 +266,10 @@ table {
 }
 .mat-table {
   background: rgb(159, 161, 155) !important;
+}
+
+.mat-table th {
+  background: rgb(37, 37, 37) !important;
 }
 
 .full-width {

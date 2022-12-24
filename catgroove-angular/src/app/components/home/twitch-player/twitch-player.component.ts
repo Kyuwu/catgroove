@@ -12,18 +12,13 @@ import { TwitchEmbed, TwitchEmbedLayout } from 'twitch-player';
 })
 
 export class TwitchPlayerComponent implements OnInit {
-  player;
+  data: TwitchChannel[];
   constructor(private db: TwitchService) { 
 
   }
 
   ngOnInit(): void {
     this.retrieveList();   
-    this.player == new TwitchEmbed("player",{
-      width: 1280,
-      height: 720,
-      channel: 'kyuwu'
-    });
   }
 
   retrieveList(): void {
@@ -37,16 +32,7 @@ export class TwitchPlayerComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      console.log(data);
-        // const embed = new TwitchEmbed('player', {
-        //   width: 1280,
-        //   height: 720,
-        //   channel: `${data[0].channel}`,
-        //   layout: TwitchEmbedLayout.VIDEO_WITH_CHAT
-        // });
+      this.data = data
     });
-  }
-  setPlayer(data: string) {
-    this.player.setChannel(data)
   }
 }

@@ -25,13 +25,24 @@
       <a fxFill="50" mat-flat-button color="accent" class="upload-btn" (click)="fileUpload.click()">
         <mat-icon>attach_file</mat-icon>Upload image
       </a>
-      <div class="img-div-wrapper">
-        <div class="img-wrapper">
-          <img mat-card-image name="image" src="{{selectedFile.src}}" *ngIf="selectedFile; else fillerImage">
-          <ng-template #fillerImage>
-            <img mat-card-image src="{{data.image}}">
-          </ng-template>
-        </div>
+      <div class="img-banner">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Click to see image
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="img-div-wrapper">
+              <div class="img-wrapper">
+                <img mat-card-image name="image" src="{{selectedFile.src}}" *ngIf="selectedFile; else fillerImage">
+                <ng-template #fillerImage>
+                  <img mat-card-image src="{{data.image}}">
+                </ng-template>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
       </div>
     </form>
     <button fxFill="50" mat-flat-button color="success" [disabled]="!add.valid" (click)="submit()">Save theme
