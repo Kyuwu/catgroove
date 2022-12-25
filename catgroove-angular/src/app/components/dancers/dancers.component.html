@@ -6,8 +6,10 @@
   <app-dancer-card fxFlex [dancer]="dancer"></app-dancer-card>
 </div> -->
 
-<mat-grid-list cols="2" rowHeight="1000px" >
-  <mat-grid-tile *ngFor="let data of datas">
+<div class="grid">
+  <ng-container *ngFor="let data of datas">
     <app-dancer-card fxFlex [dancer]="data"></app-dancer-card>
-  </mat-grid-tile>
-</mat-grid-list>
+
+  </ng-container>
+</div>
+

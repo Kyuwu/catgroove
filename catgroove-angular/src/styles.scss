@@ -275,6 +275,7 @@ table {
 }
 
 .mat-table th {
+  padding-right: 2vw !important;
   background: rgb(37, 37, 37) !important;
 }
 
@@ -282,12 +283,14 @@ table {
   width: 100%;
 }
 th button {
-  width: 8vw;
+  min-width: 8vw !important;
 }
 td button {
-  width: 4vw;
+  min-width: 4vw !important;
 }
-
+.mat-cell {
+  padding-right: 2vw !important;
+}
 th.mat-header-cell,
 td.mat-cell,
 td.mat-footer-cell {
