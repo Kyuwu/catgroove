@@ -46,7 +46,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Services</mat-label>
-      <input matInput formControlName="services">
+      <textarea matInput formControlName="services"></textarea>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Bio/Description</mat-label>
@@ -60,20 +60,29 @@
               Click to see image
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div class="img-div-wrapper">
-            <div class="img-wrapper">
-              <img mat-card-image name="image" src="{{selectedFile.src}}" *ngIf="selectedFile; else fillerImage">
-              <ng-template #fillerImage>
-                <img mat-card-image src="{{data.image}}">
-              </ng-template>
-            </div>
+          <div class="img-wrapper">
+            <img mat-card-image name="image" [src]="croppedImage" *ngIf="croppedImage; else fillerImage">
+            <mat-card>
+              <mat-card-title>Cropped</mat-card-title>
+            </mat-card>
+            <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="9 / 16"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            (cropperReady)="cropperReady()"
+          ></image-cropper>
+            <ng-template #fillerImage>
+              <img mat-card-image src="{{data.image}}">
+            </ng-template>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
     <mat-dialog-actions>
       <input style="width: 100%;" #imageInput id="file-upload" type="file"
-        accept="image/x-png,image/jpeg,image/jpg,image/gif" (change)="processFile(imageInput)" #fileUpload>
+        accept="image/x-png,image/jpeg,image/jpg,image/gif" (change)="fileChangeEvent($event)"  #fileUpload>
       <a mat-flat-button color="accent" class="upload-btn" (click)="fileUpload.click()">
         <mat-icon>attach_file</mat-icon>Upload image
       </a>

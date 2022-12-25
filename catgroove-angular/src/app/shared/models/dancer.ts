@@ -1,5 +1,6 @@
 export default class Dancer {
     image?: File;
+    imageLoaded?: File;
     key?: string | null;
     name?: string;
     age?: number;
