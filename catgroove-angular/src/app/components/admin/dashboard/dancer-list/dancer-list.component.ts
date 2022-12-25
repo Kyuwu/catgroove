@@ -4,11 +4,11 @@ import {
   ViewChild
 } from '@angular/core';
 import {
-  MatPaginator
-} from '@angular/material/paginator';
+  MatLegacyPaginator as MatPaginator
+} from '@angular/material/legacy-paginator';
 import {
-  MatTableDataSource
-} from '@angular/material/table';
+  MatLegacyTableDataSource as MatTableDataSource
+} from '@angular/material/legacy-table';
 import {
   map
 } from 'rxjs';
@@ -16,9 +16,9 @@ import {
   DancerService
 } from 'src/app/shared/services/firebase/dancer.service';
 import {
-  MatDialog,
-  MatDialogRef
-} from '@angular/material/dialog';
+  MatLegacyDialog as MatDialog,
+  MatLegacyDialogRef as MatDialogRef
+} from '@angular/material/legacy-dialog';
 import {
   AddDancerComponent
 } from './add-dancer/add-dancer.component';

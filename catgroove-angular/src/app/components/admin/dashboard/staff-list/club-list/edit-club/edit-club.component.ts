@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import Club from 'src/app/shared/models/club';
 import { ClubService } from 'src/app/shared/services/firebase/club.service';
 import { StaffService } from 'src/app/shared/services/firebase/staff.service';

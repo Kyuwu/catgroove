@@ -12,10 +12,10 @@ import {
   Validators
 } from '@angular/forms';
 import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from '@angular/material/dialog';
+  MatLegacyDialog as MatDialog,
+  MatLegacyDialogRef as MatDialogRef,
+  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA
+} from '@angular/material/legacy-dialog';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import Dancer from 'src/app/shared/models/dancer';
 import {

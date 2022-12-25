@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormControlName, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { DancerService } from 'src/app/shared/services/firebase/dancer.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
