@@ -52,6 +52,7 @@ import { AddClubComponent } from './components/admin/dashboard/staff-list/club-l
 import { EditClubComponent } from './components/admin/dashboard/staff-list/club-list/edit-club/edit-club.component';
 import { CustomMaterialComponent } from './shared/components/custom-material/custom-material.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { GalleryModule } from 'ng-gallery';
 
 
 
@@ -107,6 +108,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
   ],
   imports: [
     AngularMaterialModule,
+    GalleryModule,
     ImageCropperModule,
     FormsModule,
     ReactiveFormsModule ,

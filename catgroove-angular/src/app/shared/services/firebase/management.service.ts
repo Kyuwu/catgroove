@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { GalleryItem } from 'ng-gallery';
 import Management from '../../models/management';
 
 @Injectable({
@@ -7,6 +8,7 @@ import Management from '../../models/management';
 })
 export class ManagementService {
   private dbPath = '/management';
+  images: GalleryItem[];
 
   apiRef: AngularFireList<Management>;
 
@@ -34,3 +36,4 @@ export class ManagementService {
     return this.apiRef.remove();
   }
 }
+

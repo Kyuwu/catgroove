@@ -14,11 +14,11 @@ import { TwitchEmbed, TwitchEmbedLayout } from 'twitch-player';
 export class TwitchPlayerComponent implements OnInit {
   data: TwitchChannel[];
   constructor(private db: TwitchService) { 
-
+    this.data = [{show: false}]
   }
 
   ngOnInit(): void {
-    this.retrieveList();   
+
   }
 
   retrieveList(): void {
