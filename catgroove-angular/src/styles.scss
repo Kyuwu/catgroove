@@ -50,6 +50,7 @@ mat-card {
   background-color: black !important;
   color: white !important;
   font-weight: 700 !important;
+  border-radius: 0 !important;
 }
 
 ::selection {
@@ -234,8 +235,10 @@ body {
 }
 
 .mat-card-image {
+  width: 100% !important;
   margin: 0 !important;
 }
+
 input[type="file"] {
   display: none;
 }
@@ -267,12 +270,27 @@ table {
   background: rgb(159, 161, 155) !important;
 }
 
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+  color: black !important;
+}
+
+.mat-table th {
+  padding-right: 2vw !important;
+  background: rgb(37, 37, 37) !important;
+}
+
 .full-width {
   width: 100%;
 }
-
-
-
+th button {
+  min-width: 8vw !important;
+}
+td button {
+  min-width: 4vw !important;
+}
+.mat-cell {
+  padding-right: 2vw !important;
+}
 th.mat-header-cell,
 td.mat-cell,
 td.mat-footer-cell {

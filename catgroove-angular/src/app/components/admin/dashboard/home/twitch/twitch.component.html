@@ -11,6 +11,7 @@
         <mat-label>Twitch Channel</mat-label>
         <input formControlName="channel" matInput>
       </mat-form-field>
+        <mat-slide-toggle formControlName="show" style="margin-bottom: 1vh;">Show on homepage banner</mat-slide-toggle>
       <button mat-flat-button color="success" [disabled]="!add.valid" (click)="submit()">Save channel</button>
     </form>
 

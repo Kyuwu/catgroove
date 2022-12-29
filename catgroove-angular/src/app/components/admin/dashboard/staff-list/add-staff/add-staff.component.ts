@@ -19,7 +19,8 @@ export class AddStaffComponent implements OnInit {
   add: FormGroup;
   clubs: Club[];
   staff: Staff;
-  constructor(public fb: FormBuilder, public db: StaffService, public club: ClubService) {     
+  constructor(public fb: FormBuilder, public db: StaffService, public club: ClubService) {   
+    this.clubs = club.getClubs();  
     this.add = this.fb.group({
       image: ['', Validators.required],
       club: ['', Validators.required],

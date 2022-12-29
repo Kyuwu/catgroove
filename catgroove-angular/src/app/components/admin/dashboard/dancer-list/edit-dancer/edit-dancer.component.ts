@@ -16,10 +16,12 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from '@angular/material/dialog';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import Dancer from 'src/app/shared/models/dancer';
 import {
   DancerService
 } from 'src/app/shared/services/firebase/dancer.service';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import {
   ImageSnippet
 } from 'src/app/shared/util/imagesnippet.model';
@@ -34,8 +36,11 @@ export class EditDancerComponent implements OnInit {
   selectedFile!: ImageSnippet;
   add: FormGroup;
   data: Dancer;
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  ogImage: any = '';
 
-  constructor(public fb: FormBuilder, public db: DancerService,
+  constructor(public fb: FormBuilder, public snack: SnackbarService, public db: DancerService,
     @Inject(MAT_DIALOG_DATA) data) {
     // this.dialogRef = this.matDialog.open(AddDancerComponent);
     this.add = this.fb.group({
@@ -59,13 +64,20 @@ export class EditDancerComponent implements OnInit {
     this.db.update(this.data.key, this.add.value);
   }
 
-  processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.add.controls['image'].setValue(this.selectedFile.src);
-    });
-    reader.readAsDataURL(file);
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    this.snack.update("image cropped",'')
+    this.add.controls['image'].setValue(this.croppedImage);
+  }
+  imageLoaded(image: LoadedImage) {
+      this.snack.add("image loaded",'')
+      this.add.controls['imageLoaded'].setValue(image);
+  }
+  cropperReady() {
+    // cropper ready
+    this.snack.add("image ready",'')
   }
 }

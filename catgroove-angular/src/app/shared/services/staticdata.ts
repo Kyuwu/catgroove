@@ -15,6 +15,33 @@ export const areas = [
     name: "The goblet",
   },
 ];
+const chaosServers = [
+  {
+    name: "Spriggan",
+  },
+  {
+    name: "Cerberus",
+  },
+  {
+    name: "Louisoix",
+  },
+  {
+    name: "Moogle",
+  },
+  {
+    name: "Omega",
+  },
+  {
+    name: "Phantom",
+  },
+  {
+    name: "Ragnarok",
+  },
+  {
+    name: "Sagittarius",
+  },
+];
+
 const lightServers = [
   {
     name: "Zodiark",
@@ -32,10 +59,13 @@ const lightServers = [
     name: "Twintania",
   },
   {
-    name: "Light",
+    name: "Phoenix",
   },
   {
     name: "Odin",
+  },
+  {
+    name: "Shiva",
   },
 ];
 export const datacenters = [
@@ -43,7 +73,8 @@ export const datacenters = [
     name: "Light",
     servers : lightServers
   },
-  {
-    name: "Chaos",
-  },
+  // {
+  //   name: "Chaos",
+  //   servers: chaosServers
+  // },
 ];
