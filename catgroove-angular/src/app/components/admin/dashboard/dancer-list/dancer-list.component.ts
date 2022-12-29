@@ -85,7 +85,7 @@ export class DancerListComponent implements AfterViewInit {
 
   delete(data: any) {
     if (data.key) {
-      this.db.delete(data.key)
+      this.db.delete(data.key, data.name)
         .then(() => {
           this.snackbar.delete(`Deleted  ${this.type}: ${data.name}`, '');
         })

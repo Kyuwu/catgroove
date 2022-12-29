@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -16,7 +17,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from '@angular/material/dialog';
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { base64ToFile, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import Dancer from 'src/app/shared/models/dancer';
 import {
   DancerService
@@ -38,13 +39,10 @@ export class EditDancerComponent implements OnInit {
   data: Dancer;
   imageChangedEvent: any = '';
   croppedImage: any = '';
-  ogImage: any = '';
-
   constructor(public fb: FormBuilder, public snack: SnackbarService, public db: DancerService,
     @Inject(MAT_DIALOG_DATA) data) {
     // this.dialogRef = this.matDialog.open(AddDancerComponent);
     this.add = this.fb.group({
-      image: [data.image, Validators.required],
       name: [data.name, Validators.required],
       age: [data.age, Validators.required],
       language: [data.language, Validators.required],
@@ -58,10 +56,10 @@ export class EditDancerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(data)
+    console.log(this.data)
   }
   submit() {
-    this.db.update(this.data.key, this.add.value);
+    this.db.update(this.data.key, this.add);
   }
 
   fileChangeEvent(event: any): void {
@@ -69,13 +67,12 @@ export class EditDancerComponent implements OnInit {
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
-    this.snack.update("image cropped",'')
+    this.add.addControl('image', new FormControl(this.croppedImage, Validators.required));
     this.add.controls['image'].setValue(this.croppedImage);
   }
   imageLoaded(image: LoadedImage) {
       this.snack.add("image loaded",'')
-      this.add.controls['imageLoaded'].setValue(image);
-  }
+    }
   cropperReady() {
     // cropper ready
     this.snack.add("image ready",'')

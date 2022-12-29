@@ -12,7 +12,7 @@ export class AddManagementComponent implements OnInit {
   type = 'Management';
   selectedFile!: ImageSnippet;
   add: FormGroup;
-  constructor(public fb: FormBuilder, public db: ManagementService) {     
+  constructor(public fb: FormBuilder, public db: ManagementService) { 
     this.add = this.fb.group({
       image: ['', Validators.required],
       name: ['', Validators.required],
@@ -24,7 +24,7 @@ export class AddManagementComponent implements OnInit {
   ngOnInit(): void {
   }
   submit() {
-    this.db.create(this.add.value);
+    this.db.create(this.add);
   }
 
   processFile(imageInput: any) {
@@ -32,7 +32,7 @@ export class AddManagementComponent implements OnInit {
     const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.add.controls['image'].setValue(this.selectedFile.src);
+      this.add.controls['image'].setValue(this.selectedFile.file);
     });
     reader.readAsDataURL(file);
   }

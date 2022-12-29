@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
 import Dancer from '../../models/dancer';
+import { FileuploadService } from '../fileupload.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +12,23 @@ export class DancerService {
 
   apiRef: AngularFireList<Dancer>;
 
-  constructor(db: AngularFireDatabase) {
+  constructor(db: AngularFireDatabase, public upload: FileuploadService) {
     this.apiRef = db.list(this.dbPath);
-  }
-
-  getAll(): AngularFireList<Dancer> {
-    return this.apiRef;
+    upload.setPath(this.dbPath);
   }
 
   create(any: any): any {
-    return this.apiRef.push(any);
+    return this.upload.push(any);
   }
 
-  update(key: string, value: any): Promise<void> {
-    return this.apiRef.update(key, value);
+  update(key: string, value: any): Observable<number> {
+    return this.upload.push(value, key);
   }
 
-  delete(key: string): Promise<void> {
-    return this.apiRef.remove(key);
+  delete(key: string, name: string): Promise<void>  {
+    return this.upload.delete(key, name);
   }
-
-  deleteAll(): Promise<void> {
-    return this.apiRef.remove();
+  getAll(): AngularFireList<Dancer> {
+    return this.apiRef;
   }
 }

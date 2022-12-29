@@ -1,74 +1,85 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import {
+  Injectable
+} from '@angular/core';
+import {
+  AngularFireDatabase,
+  AngularFireList
+} from '@angular/fire/compat/database';
+import {
+  AngularFireStorage
+} from '@angular/fire/compat/storage';
+import {
+  Form,
+  FormGroup
+} from '@angular/forms';
+import { base64ToFile } from 'ngx-image-cropper';
 
-import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import {
+  Observable
+} from 'rxjs';
+import {
+  finalize
+} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileuploadService {
-private basePath = '';
+  private basePath = '';
 
-  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) { }
-
-  pushFileToStorage(fileUpload: FileUpload): Observable<number> {
-    const filePath = `${this.basePath}/${fileUpload.file.name}`;
-    const storageRef = this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath, fileUpload.file);
-
-    uploadTask.snapshotChanges().pipe(
-      finalize(() => {
-        storageRef.getDownloadURL().subscribe(downloadURL => {
-          fileUpload.url = downloadURL;
-          fileUpload.name = fileUpload.file.name;
-          this.saveFileData(fileUpload);
-        });
-      })
-    ).subscribe();
-
-    return uploadTask.percentageChanges();
-  }
 
   setPath(string: string) {
     this.basePath = string;
   }
 
-  private saveFileData(fileUpload: FileUpload): void {
-    this.db.list(this.basePath).push(fileUpload);
+  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) {}
+
+  push(form: FormGroup, key?: string): Observable < number > {
+    const filePath = `${this.basePath}/${form.controls['name'].value}`;
+    if (form.controls['image']) {
+      const storageRef = this.storage.ref(filePath);
+      const uploadTask = this.storage.upload(filePath, base64ToFile(form.controls['image'].value));
+      uploadTask.snapshotChanges().pipe(
+        finalize(() => {
+          storageRef.getDownloadURL().subscribe(downloadURL => {
+            form.controls['image'].setValue(downloadURL);
+            if (typeof key !== 'undefined') {
+              this.update(key, form);
+            } else {
+              this.save(form);
+            }
+          });
+        })
+      ).subscribe();
+      return uploadTask.percentageChanges();
+    } else {
+      this.update(key, form);
+      return null;
+    }
   }
 
-  getFiles(numberItems): AngularFireList<FileUpload> {
-    return this.db.list(this.basePath, ref =>
-      ref.limitToLast(numberItems));
+  private save(form: FormGroup): void {
+    this.db.list(this.basePath).push(form.value);
   }
 
-  deleteFile(fileUpload: FileUpload): void {
-    this.deleteFileDatabase(fileUpload.key)
+  private update(key: string, form: FormGroup): void {
+    this.db.list(this.basePath).update(key,form.value);
+  }
+
+  delete(key: string, name: string)  {
+    return this.deleteFileDatabase(key)
       .then(() => {
-        this.deleteFileStorage(fileUpload.name);
+        this.deleteFileStorage(name);
       })
       .catch(error => console.log(error));
   }
 
-  private deleteFileDatabase(key: string): Promise<void> {
+  private deleteFileDatabase(key: string): Promise < void > {
     return this.db.list(this.basePath).remove(key);
   }
 
   private deleteFileStorage(name: string): void {
     const storageRef = this.storage.ref(this.basePath);
     storageRef.child(name).delete();
-  }
-}
-
-export class FileUpload {
-  key: string;
-  name: string;
-  url: string;
-  file: File;
-
-  constructor(file: File) {
-    this.file = file;
   }
 }

@@ -32,7 +32,7 @@ export class EditManagementComponent implements OnInit {
     // console.log(data)
   }
   submit() {
-    this.db.update(this.data.key, this.add.value);
+    this.db.update(this.data.key, this.add);
   }
 
   processFile(imageInput: any) {
@@ -40,7 +40,7 @@ export class EditManagementComponent implements OnInit {
     const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.add.controls['image'].setValue(this.selectedFile.src);
+      this.add.controls['image'].setValue(this.selectedFile.file);
     });
     reader.readAsDataURL(file);
   }
