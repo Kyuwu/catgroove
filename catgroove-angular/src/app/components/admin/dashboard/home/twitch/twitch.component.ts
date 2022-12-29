@@ -17,7 +17,7 @@ export class TwitchComponent implements OnInit {
   data: TwitchChannel;
   constructor(private db: TwitchService, public snackbar: SnackbarService, public fb: FormBuilder) {    
     this.add = this.fb.group({
-      channel: ['', Validators.required],
+      name: ['', Validators.required],
       show: [''],
     });
   }
@@ -41,7 +41,7 @@ export class TwitchComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      this.add.controls['channel'].setValue(data[0].channel);
+      this.add.controls['name'].setValue(data[0].name);
       this.add.controls['show'].setValue(data[0].show);
       this.data = data[0]
     });
@@ -49,6 +49,6 @@ export class TwitchComponent implements OnInit {
 
   submit() {
     this.db.update(this.data.key, this.add.value);
-    this.snackbar.update(`Updated the current channel to: ${this.add.controls['channel'].value}`,'');
+    this.snackbar.update(`Updated the current channel to: ${this.add.controls['name'].value}`,'');
   }
 }

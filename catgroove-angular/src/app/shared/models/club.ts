@@ -1,7 +1,7 @@
 import Staff from "./staff";
 
 export default class Club {
-  image?: File;
+  image?: string;
   key?: string | null;
   name?: string;
   description?: string;

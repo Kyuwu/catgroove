@@ -41,9 +41,6 @@ export class AddDancerComponent implements OnInit {
   type = 'Dancer';
   selectedFile!: ImageSnippet;
   add: FormGroup;
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
-  ogImage: any = '';
   constructor(public fb: FormBuilder, public db: DancerService, public snack: SnackbarService) {
     this.add = this.fb.group({
       image: ['', Validators.required],
@@ -57,6 +54,10 @@ export class AddDancerComponent implements OnInit {
       bio: ['', Validators.required],
     });
   }
+
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  ogImage: any = '';
 
   ngOnInit(): void {}
   submit() {

@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import Management from 'src/app/shared/models/management';
 import { ServicesService } from 'src/app/shared/services/firebase/services.service';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { ImageSnippet } from 'src/app/shared/util/imagesnippet.model';
 
 @Component({
@@ -16,11 +18,10 @@ export class EditServiceComponent implements OnInit {
   add: FormGroup;
   data: Management;
 
-  constructor(public fb: FormBuilder, public db: ServicesService,
+  constructor(public fb: FormBuilder, public db: ServicesService, public snack: SnackbarService,
     @Inject(MAT_DIALOG_DATA) data) {
     this.add = this.fb.group({
-      image: [data.image, Validators.required],
-      title: [data.title, Validators.required],
+      name: [data.name, Validators.required],
       description: [data.description, Validators.required],
       reminder: [data.reminder, Validators.required],
       price: [data.price, Validators.required],
@@ -29,20 +30,28 @@ export class EditServiceComponent implements OnInit {
     this.data = data;
   }
 
-  ngOnInit(): void {
-    // console.log(data)
-  }
+
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  
+  ngOnInit(): void {}
   submit() {
-    this.db.update(this.data.key, this.add.value);
+    this.db.update(this.data.key, this.add);
   }
 
-  processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.add.controls['image'].setValue(this.selectedFile.src);
-    });
-    reader.readAsDataURL(file);
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    this.add.addControl('image', new FormControl(this.croppedImage, Validators.required));
+    this.add.controls['image'].setValue(this.croppedImage);
+  }
+  imageLoaded(image: LoadedImage) {
+      this.snack.add("image loaded",'')
+    }
+  cropperReady() {
+    // cropper ready
+    this.snack.add("image ready",'')
   }
 }

@@ -1,7 +1,7 @@
 export default class Bar {
-    image?: File;
+    image?: string;
     key?: string | null;
-    title?: string;
+    name?: string;
     description?: string;
     recipe?: string;
     price?: number;

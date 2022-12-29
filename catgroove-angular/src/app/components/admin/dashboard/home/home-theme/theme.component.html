@@ -12,7 +12,7 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
-        <textarea  formControlName="description" matInput></textarea>
+        <textarea formControlName="description" matInput></textarea>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Club location</mat-label>
@@ -20,9 +20,9 @@
           <mat-option *ngFor="let club of clubs" [value]="club.name">{{ club.name }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <input #imageInput id="file-upload" type="file" accept="image/x-png,image/jpeg,image/jpg,image"
-        (change)="processFile(imageInput)" #fileUpload>
-      <a fxFill="50" mat-flat-button color="accent" class="upload-btn" (click)="fileUpload.click()">
+      <input style="width: 100%;" #imageInput id="file-upload" type="file"
+        accept="image/x-png,image/jpeg,image/jpg,image/gif" (change)="fileChangeEvent($event)" #fileUpload>
+      <a mat-flat-button color="accent" class="upload-btn" (click)="fileUpload.click()">
         <mat-icon>attach_file</mat-icon>Upload image
       </a>
       <div class="img-banner">
@@ -33,13 +33,16 @@
                 Click to see image
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <div class="img-div-wrapper">
-              <div class="img-wrapper">
-                <img mat-card-image name="image" src="{{selectedFile.src}}" *ngIf="selectedFile; else fillerImage">
-                <ng-template #fillerImage>
-                  <img mat-card-image src="{{data.image}}">
-                </ng-template>
-              </div>
+            <div class="img-wrapper">
+              <img mat-card-image name="image" [src]="croppedImage" *ngIf="croppedImage; else fillerImage">
+              <mat-card>
+                <mat-card-title>Cropped</mat-card-title>
+              </mat-card>
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 5"
+                format="png" (imageCropped)="imageCropped($event)" (cropperReady)="cropperReady()"></image-cropper>
+              <ng-template #fillerImage>
+                <img mat-card-image src="{{data.image}}">
+              </ng-template>
             </div>
           </mat-expansion-panel>
         </mat-accordion>

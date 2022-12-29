@@ -37,8 +37,6 @@ export class EditDancerComponent implements OnInit {
   selectedFile!: ImageSnippet;
   add: FormGroup;
   data: Dancer;
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
   constructor(public fb: FormBuilder, public snack: SnackbarService, public db: DancerService,
     @Inject(MAT_DIALOG_DATA) data) {
     // this.dialogRef = this.matDialog.open(AddDancerComponent);
@@ -55,9 +53,10 @@ export class EditDancerComponent implements OnInit {
     this.data = data;
   }
 
-  ngOnInit(): void {
-    console.log(this.data)
-  }
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  
+  ngOnInit(): void {}
   submit() {
     this.db.update(this.data.key, this.add);
   }

@@ -3,7 +3,7 @@
   <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch" style="max-width: 30vw;">
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
-      <input formControlName="title" matInput>
+      <input formControlName="name" matInput>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
@@ -31,7 +31,12 @@
           </mat-expansion-panel-header>
           <div class="img-div-wrapper">
             <div class="img-wrapper">
-              <img mat-card-image name="image" src="{{selectedFile.src}}" *ngIf="selectedFile; else fillerImage">
+              <img mat-card-image name="image" [src]="croppedImage" *ngIf="croppedImage; else fillerImage">
+              <mat-card>
+                <mat-card-title>Cropped</mat-card-title>
+              </mat-card>
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 5"
+                format="png" (imageCropped)="imageCropped($event)" (cropperReady)="cropperReady()"></image-cropper>
               <ng-template #fillerImage>
                 <img mat-card-image src="../../../../../../assets/images/dummy.png  ">
               </ng-template>
@@ -42,7 +47,7 @@
     </div>
     <mat-dialog-actions>
       <input style="width: 100%;" #imageInput id="file-upload" type="file"
-        accept="image/x-png,image/jpeg,image/jpg,image/gif" (change)="processFile(imageInput)" #fileUpload>
+        accept="image/x-png,image/jpeg,image/jpg,image/gif" (change)="fileChangeEvent($event)" #fileUpload>
       <a mat-flat-button color="accent" class="upload-btn" (click)="fileUpload.click()">
         <mat-icon>attach_file</mat-icon>Upload image
       </a>

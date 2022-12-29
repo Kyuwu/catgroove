@@ -1,5 +1,5 @@
 export default class Management {
-    image?: File;
+    image?: string;
     key?: string | null;
     name?: string;
     role?: string;

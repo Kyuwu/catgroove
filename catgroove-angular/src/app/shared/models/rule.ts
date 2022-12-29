@@ -1,5 +1,5 @@
-export default class rule {
+export default class Rule {
     key?: string | null;
-    title?: string;
+    name?: string;
     description?: string;
 }

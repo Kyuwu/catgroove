@@ -1,7 +1,7 @@
 export default class Service {
-    image?: File;
+    image?: string;
     key?: string | null;
-    title?: string;
+    name?: string;
     description?: string;
     reminder?: string;
     price?: number;

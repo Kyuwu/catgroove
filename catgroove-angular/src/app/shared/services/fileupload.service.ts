@@ -34,7 +34,7 @@ export class FileuploadService {
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) {}
 
-  push(form: FormGroup, key?: string): Observable < number > {
+  push(form: FormGroup, key?: string, base?: boolean): Observable < number > {
     const filePath = `${this.basePath}/${form.controls['name'].value}`;
     if (form.controls['image']) {
       const storageRef = this.storage.ref(filePath);

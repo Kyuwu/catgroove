@@ -1,5 +1,5 @@
 export default class Theme {
-    image?: File;
+    image?: string;
     key?: string | null;
     name?: string;
     description?: string;

@@ -28,6 +28,7 @@ export class DancerService {
   delete(key: string, name: string): Promise<void>  {
     return this.upload.delete(key, name);
   }
+  
   getAll(): AngularFireList<Dancer> {
     return this.apiRef;
   }

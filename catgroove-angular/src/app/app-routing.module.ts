@@ -105,11 +105,14 @@ const routes: Routes = [{
     component: DashboardComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: 'admin/verify',
-    component: VerifyComponent,
-    canActivate: [AuthGuard]
-  }
+  // {
+  //   path: 'admin/verify',
+  //   component: VerifyComponent,
+  // },
+  // {
+  //   path: 'admin/register',
+  //   component: RegisterComponent,
+  // }
 ];
 
 @NgModule({

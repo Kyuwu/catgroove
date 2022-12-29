@@ -1,5 +1,5 @@
 export default class Partner {
-    image?: File;
+    image?: string;
     key?: string | null;
     name?: string;
     discord?: string;

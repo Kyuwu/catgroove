@@ -9,7 +9,7 @@
     <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch" style="max-width: 30vw;">
       <mat-form-field appearance="fill">
         <mat-label>Twitch Channel</mat-label>
-        <input formControlName="channel" matInput>
+        <input formControlName="name" matInput>
       </mat-form-field>
         <mat-slide-toggle formControlName="show" style="margin-bottom: 1vh;">Show on homepage banner</mat-slide-toggle>
       <button mat-flat-button color="success" [disabled]="!add.valid" (click)="submit()">Save channel</button>
