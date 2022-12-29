@@ -22,9 +22,11 @@ import { LoginComponent } from './components/admin/login/login.component';
 import { RegisterComponent } from './components/admin/register/register.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import { VerifyComponent } from './components/admin/verify/verify.component';
 import { DancerListComponent } from './components/admin/dashboard/dancer-list/dancer-list.component';
@@ -117,6 +119,9 @@ import { CustomMaterialComponent } from './shared/components/custom-material/cus
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
+
     // AngularFireStorageModule,
     // AngularFireDatabaseModule,
   ],

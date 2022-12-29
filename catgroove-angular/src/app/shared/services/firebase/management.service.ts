@@ -6,7 +6,7 @@ import Management from '../../models/management';
   providedIn: 'root'
 })
 export class ManagementService {
-  private dbPath = '/management';
+  private dbPath = '/managementTEST';
 
   apiRef: AngularFireList<Management>;
 
