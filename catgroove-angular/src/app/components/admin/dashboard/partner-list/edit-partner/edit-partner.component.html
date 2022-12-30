@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Edit {{type}}</h2>
+<mat-dialog-content>
+  <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch" style="max-width: 30vw;">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Discord Link</mat-label>
+      <input formControlName="discord" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Website URL</mat-label>
+      <input formControlName="website" matInput>
+    </mat-form-field>
+    <div class="img-banner">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Click to see image
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="img-wrapper">
+            <img mat-card-image name="image" [src]="croppedImage" *ngIf="croppedImage; else fillerImage">
+            <mat-card>
+              <mat-card-title>Cropped</mat-card-title>
+            </mat-card>
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 5"
+              format="png" (imageCropped)="imageCropped($event)" (cropperReady)="cropperReady()"></image-cropper>
+            <ng-template #fillerImage>
+              <img mat-card-image src="{{data.image}}">
+            </ng-template>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <mat-dialog-actions>
+      <input style="width: 100%;" #imageInput id="file-upload" type="file"
+        accept="image/x-png,image/jpeg,image/jpg,image/gif" (change)="fileChangeEvent($event)" #fileUpload>
+      <a mat-flat-button color="accent" class="upload-btn" (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>Upload image
+      </a>
+      <button mat-flat-button color="primary" [disabled]="!add.valid" [mat-dialog-close]="true"
+        (click)="submit()">Update {{type}}</button>
+      <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

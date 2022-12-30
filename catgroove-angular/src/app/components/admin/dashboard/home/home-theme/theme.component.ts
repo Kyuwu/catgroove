@@ -31,34 +31,39 @@ import {
   ImageSnippet
 } from 'src/app/shared/util/imagesnippet.model';
 
+const location: string[] = [];
 @Component({
   selector: 'app-theme',
   templateUrl: './theme.component.html',
   styleUrls: ['./theme.component.scss']
 })
+
 export class ThemeComponent implements OnInit {
   clubs: Club[];
   add: FormGroup;
   key: string;
   data: Theme = new Theme();
+  location: string[] =[];
   selectedFile!: ImageSnippet;
 
-  constructor(private db: ThemeService, private club: ClubListService, public snackbar: SnackbarService, public fb: FormBuilder, public snack: SnackbarService) {
-    this.clubs = club.setClubs();
+  constructor(private db: ThemeService, private club: ClubService, public snackbar: SnackbarService, public fb: FormBuilder, public snack: SnackbarService) {
     this.add = this.fb.group({
       name: [, Validators.required],
-      description: ['test', Validators.required],
-      location: ['test'],
+      description: ['', Validators.required],
+      location: [''],
     });
   }
 
   ngOnInit(): void {
-    // this.clubs = this.club.getClubsCall();
+    this.clubs = this.club.getClubsCall();
     this.retrieveList();
   }
 
   get() {
-    // this.clubs = this.club.getClubs();
+    this.clubs = this.club.getClubs();
+    this.clubs.forEach(element => {
+      this.location.push(`${element.name} - ${element.datacenter} - ${element.server} - ${element.area} - Ward: ${element.ward} - Plot: ${element.plot}`)
+    });
   }
   retrieveList(): void {
     this.db.getAll().snapshotChanges().pipe(
@@ -73,11 +78,8 @@ export class ThemeComponent implements OnInit {
     ).subscribe(data => {
       this.add.controls['name'].setValue(data[0].name);
       this.add.controls['description'].setValue(data[0].description);
-      // this.add.controls['image'].setValue(data[0].image);
       this.add.controls['location'].setValue(data[0].location);
       this.data = data[0];
-      console.log(this.data)
-
     });
   }
 

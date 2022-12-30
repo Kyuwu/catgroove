@@ -44,10 +44,11 @@
         <app-services-list *ngIf="state=='services'"></app-services-list>
         <app-club-list *ngIf="state=='staff'"></app-club-list>
         <app-bar-list *ngIf="state=='bar'"></app-bar-list>
+        <app-partner-list *ngIf="state=='partners'"></app-partner-list>
 
       </div>
     </mat-drawer-content>
-    <mat-drawer #drawer mode="over">
+    <mat-drawer #drawer mode="over" opened="true" >
       <div class="button-wrapper">
         <button mat-flat-button color="primary" (click)="state = 'management'">MANAGEMENT</button>
         <button mat-flat-button color="primary" (click)="state = 'staff'">CLUBS/STAFF</button>

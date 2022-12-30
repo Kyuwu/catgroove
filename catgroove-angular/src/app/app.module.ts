@@ -58,6 +58,9 @@ import { GalleryModule } from 'ng-gallery';
 import { BarListComponent } from './components/admin/dashboard/bar-list/bar-list.component';
 import { AddBarComponent } from './components/admin/dashboard/bar-list/add-bar/add-bar.component';
 import { EditBarComponent } from './components/admin/dashboard/bar-list/edit-bar/edit-bar.component';
+import { PartnerListComponent } from './components/admin/dashboard/partner-list/partner-list.component';
+import { AddPartnerComponent } from './components/admin/dashboard/partner-list/add-partner/add-partner.component';
+import { EditPartnerComponent } from './components/admin/dashboard/partner-list/edit-partner/edit-partner.component';
 
 
 
@@ -110,6 +113,10 @@ import { EditBarComponent } from './components/admin/dashboard/bar-list/edit-bar
     BarListComponent,
     AddBarComponent,
     EditBarComponent,
+    //partner
+    PartnerListComponent,
+    AddPartnerComponent,
+    EditPartnerComponent,
     //home
     TwitchPlayerComponent,
     //shared

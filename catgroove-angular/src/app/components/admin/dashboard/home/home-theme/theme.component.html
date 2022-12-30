@@ -17,7 +17,9 @@
       <mat-form-field appearance="fill">
         <mat-label>Club location</mat-label>
         <mat-select formControlName="location">
-          <mat-option *ngFor="let club of clubs" [value]="club.name">{{ club.name }}</mat-option>
+
+          <mat-option *ngFor="let club of location"
+            [value]="club">{{club}}</mat-option>
         </mat-select>
       </mat-form-field>
       <input style="width: 100%;" #imageInput id="file-upload" type="file"
@@ -38,7 +40,7 @@
               <mat-card>
                 <mat-card-title>Cropped</mat-card-title>
               </mat-card>
-              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 5"
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="8 / 5"
                 format="png" (imageCropped)="imageCropped($event)" (cropperReady)="cropperReady()"></image-cropper>
               <ng-template #fillerImage>
                 <img mat-card-image src="{{data.image}}">

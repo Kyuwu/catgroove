@@ -15,8 +15,7 @@ export class ThemeService {
   }
 
   create(any: any): any {
-    this.upload.setPath(this.dbPath);
-    return this.upload.push(any);
+    this.apiRef.push(any.value)
   }
 
   update(key: string, value: any): Observable<number> {
