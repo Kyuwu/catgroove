@@ -14,7 +14,25 @@ export class ClubService {
 
   constructor(db: AngularFireDatabase, public upload: FileuploadService) {
     this.apiRef = db.list(this.dbPath);
-    upload.setPath(this.dbPath);
+  }
+
+  create(any: any): any {
+    this.upload.setPath(this.dbPath);
+    return this.upload.push(any);
+  }
+
+  update(key: string, value: any): Observable<number> {
+    this.upload.setPath(this.dbPath);
+    return this.upload.push(value, key);
+  }
+
+  delete(key: string, name: string): Promise<void>  {
+    this.upload.setPath(this.dbPath);
+    return this.upload.delete(key, name);
+  }
+
+  getAll(): AngularFireList<Club> {
+    return this.apiRef;
   }
 
   getClubs(){
@@ -39,19 +57,4 @@ export class ClubService {
     });
   }
 
-  create(any: any): any {
-    return this.upload.push(any);
-  }
-
-  update(key: string, value: any): Observable<number> {
-    return this.upload.push(value, key);
-  }
-
-  delete(key: string, name: string): Promise<void>  {
-    return this.upload.delete(key, name);
-  }
-
-  getAll(): AngularFireList<Club> {
-    return this.apiRef;
-  }
 }

@@ -55,6 +55,9 @@ import { EditClubComponent } from './components/admin/dashboard/staff-list/club-
 import { CustomMaterialComponent } from './shared/components/custom-material/custom-material.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { GalleryModule } from 'ng-gallery';
+import { BarListComponent } from './components/admin/dashboard/bar-list/bar-list.component';
+import { AddBarComponent } from './components/admin/dashboard/bar-list/add-bar/add-bar.component';
+import { EditBarComponent } from './components/admin/dashboard/bar-list/edit-bar/edit-bar.component';
 
 
 
@@ -103,6 +106,10 @@ import { GalleryModule } from 'ng-gallery';
     ServicesListComponent,
     AddServiceComponent,
     EditServiceComponent,
+    //barlist
+    BarListComponent,
+    AddBarComponent,
+    EditBarComponent,
     //home
     TwitchPlayerComponent,
     //shared

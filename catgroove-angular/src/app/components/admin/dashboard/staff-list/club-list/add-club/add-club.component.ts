@@ -7,6 +7,7 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import Club from 'src/app/shared/models/club';
 import Staff from 'src/app/shared/models/staff';
 import {
@@ -15,6 +16,7 @@ import {
 import {
   StaffService
 } from 'src/app/shared/services/firebase/staff.service';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { areas, datacenters } from 'src/app/shared/services/staticdata';
 import {
   ImageSnippet
@@ -34,7 +36,7 @@ export class AddClubComponent implements OnInit {
   areas = areas;
   datacenters = datacenters;
 
-  constructor(public fb: FormBuilder, public db: ClubService) {
+  constructor(public fb: FormBuilder, public db: ClubService, public snack: SnackbarService) {
     this.add = this.fb.group({
         image: ['', Validators.required],
         name: ['', Validators.required],
@@ -47,19 +49,30 @@ export class AddClubComponent implements OnInit {
       });
     }
 
+    imageChangedEvent: any = '';
+    croppedImage: any = '';
+    ogImage: any = '';
+  
     ngOnInit(): void {}
     submit() {
-      this.db.create(this.add.value);
+      this.db.create(this.add);
     }
-
-    processFile(imageInput: any) {
-      const file: File = imageInput.files[0];
-      const reader = new FileReader();
-      reader.addEventListener('load', (event: any) => {
-        this.selectedFile = new ImageSnippet(event.target.result, file);
-        this.add.controls['image'].setValue(this.selectedFile.src);
-      });
-      reader.readAsDataURL(file);
+  
+    fileChangeEvent(event: any): void {
+      this.imageChangedEvent = event;
+    }
+    imageCropped(event: ImageCroppedEvent) {
+      this.croppedImage = event.base64;
+      this.snack.update("image cropped", '')
+      this.add.controls['image'].setValue(this.croppedImage);
+    }
+    imageLoaded(image: LoadedImage) {
+      this.snack.add("image loaded", '')
+    }
+  
+    cropperReady() {
+      // cropper ready
+      this.snack.add("image ready", '')
     }
 
   }

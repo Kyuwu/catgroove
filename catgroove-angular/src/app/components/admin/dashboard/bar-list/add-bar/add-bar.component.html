@@ -2,23 +2,20 @@
 <mat-dialog-content>
   <form [formGroup]="add" fxLayout="column" fxLayoutAlign="center stretch" style="max-width: 30vw;">
     <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
+      <mat-label>Recipe name</mat-label>
       <input formControlName="name" matInput>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Clubs</mat-label>
-      <mat-select #sl formControlName="club" multiple>
-        <mat-option *ngFor="let club of clubs" [value]="club.name">{{ club.name }}</mat-option>
-        <!-- <button mat-flat-button color="warn" (click)="sl.close()">owo</button> -->
-      </mat-select>
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Role/Job</mat-label>
-      <input formControlName="role" matInput>
+      <mat-label>Recipe</mat-label>
+      <input formControlName="recipe" matInput>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Bio/Description</mat-label>
-      <input formControlName="bio" matInput>
+      <mat-label>Price</mat-label>
+      <input type="number" formControlName="price" matInput>
     </mat-form-field>
     <div class="img-banner">
       <mat-accordion>
@@ -54,6 +51,5 @@
         {{type}}</button>
       <button mat-flat-button color="warn" mat-dialog-close>Close</button>
     </mat-dialog-actions>
-
   </form>
 </mat-dialog-content>

@@ -26,6 +26,7 @@ import {
 import {
   SnackbarService
 } from 'src/app/shared/services/snackbar.service';
+import { ClubListService } from 'src/app/shared/util/clublist/clublist.service';
 import {
   ImageSnippet
 } from 'src/app/shared/util/imagesnippet.model';
@@ -42,21 +43,22 @@ export class ThemeComponent implements OnInit {
   data: Theme = new Theme();
   selectedFile!: ImageSnippet;
 
-  constructor(private db: ThemeService, public club: ClubService, public snackbar: SnackbarService, public fb: FormBuilder, public snack: SnackbarService) {
+  constructor(private db: ThemeService, private club: ClubListService, public snackbar: SnackbarService, public fb: FormBuilder, public snack: SnackbarService) {
+    this.clubs = club.setClubs();
     this.add = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      location: [''],
+      name: [, Validators.required],
+      description: ['test', Validators.required],
+      location: ['test'],
     });
   }
 
   ngOnInit(): void {
-    this.clubs = this.club.getClubsCall();
+    // this.clubs = this.club.getClubsCall();
     this.retrieveList();
   }
 
   get() {
-    this.clubs = this.club.getClubs();
+    // this.clubs = this.club.getClubs();
   }
   retrieveList(): void {
     this.db.getAll().snapshotChanges().pipe(
@@ -69,12 +71,13 @@ export class ThemeComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      console.log(data[0])
       this.add.controls['name'].setValue(data[0].name);
       this.add.controls['description'].setValue(data[0].description);
-      this.add.controls['image'].setValue(data[0].image);
+      // this.add.controls['image'].setValue(data[0].image);
       this.add.controls['location'].setValue(data[0].location);
       this.data = data[0];
+      console.log(this.data)
+
     });
   }
 
@@ -83,8 +86,7 @@ export class ThemeComponent implements OnInit {
 
   submit() {
     this.db.update(this.data.key, this.add);
-    this.snackbar.update(`Updated the current theme: ${this.data.name}`, '');
-
+    this.snackbar.update(`Updated the current theme: ${this.data.name} to ${this.add.controls['name'].value}`, '');
   }
 
   fileChangeEvent(event: any): void {
