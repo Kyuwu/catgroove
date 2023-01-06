@@ -1,16 +1,11 @@
-import { transition, trigger } from '@angular/animations';
 import {
   Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+  OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { right, left, fader, stepper } from 'src/app/shared/util/animation/animations';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {

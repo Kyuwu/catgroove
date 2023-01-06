@@ -61,9 +61,6 @@ import { EditBarComponent } from './components/admin/dashboard/bar-list/edit-bar
 import { PartnerListComponent } from './components/admin/dashboard/partner-list/partner-list.component';
 import { AddPartnerComponent } from './components/admin/dashboard/partner-list/add-partner/add-partner.component';
 import { EditPartnerComponent } from './components/admin/dashboard/partner-list/edit-partner/edit-partner.component';
-
-
-
 @NgModule({
   declarations: [
     //front
@@ -127,7 +124,7 @@ import { EditPartnerComponent } from './components/admin/dashboard/partner-list/
     GalleryModule,
     ImageCropperModule,
     FormsModule,
-    ReactiveFormsModule ,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -138,8 +135,7 @@ import { EditPartnerComponent } from './components/admin/dashboard/partner-list/
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AngularFireStorageModule
-
+    AngularFireStorageModule,
     // AngularFireStorageModule,
     // AngularFireDatabaseModule,
   ],

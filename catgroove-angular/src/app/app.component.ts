@@ -28,7 +28,21 @@ export class AppComponent {
   showLoader = true;
 
   constructor(public loaderService: LoaderService, public router: Router, public authService: AuthService, private changeDetector: ChangeDetectorRef, public url: LocationStrategy) {}
-
+  options = {
+    fpsLimit: 60,
+    particles: {
+      color: {
+        value: "#000"
+      },
+      links: {
+        enable: true,
+        color: "#000"
+      },
+      move: {
+        enable: true
+      }
+    }
+  };
   ngOnInit(): void {
     // this.setTimer();
   }
