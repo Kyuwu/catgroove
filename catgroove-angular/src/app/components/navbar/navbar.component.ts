@@ -1,19 +1,19 @@
-import { transition, trigger } from '@angular/animations';
 import {
+  AfterViewInit,
   Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { right, left, fader, stepper } from 'src/app/shared/util/animation/animations';
+  OnInit} from '@angular/core';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements AfterViewInit {
   navLinks: any[];
   constructor(private router: Router, private route: ActivatedRoute) {
     this.navLinks = [{
@@ -76,7 +76,69 @@ export class NavbarComponent implements OnInit {
     this.animationState = this.route.firstChild.snapshot.data['routeIdx'];
   }
 
-  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    var nav = $('nav');
+    var line = $('<div />').addClass('line');
+
+    line.appendTo(nav);
+
+    var active = nav.find('.active');
+    var pos = 0;
+    var wid = 0;
+
+    if (active.length) {
+      pos = active.position().left;
+      wid = active.width();
+      line.css({
+        left: pos,
+        width: wid
+      });
+    }
+
+    nav.find('ul li a').click(function (e) {
+      e.preventDefault();
+      if (!$(this).parent().hasClass('active') && !nav.hasClass('animate')) {
+
+        nav.addClass('animate');
+
+        var _this = $(this);
+
+        nav.find('ul li').removeClass('active');
+
+        var position = _this.parent().position();
+        var width = _this.parent().width();
+
+        if (position.left >= pos) {
+          line.animate({
+            width: ((position.left - pos) + width)
+          }, 300, function () {
+            line.animate({
+              width: width,
+              left: position.left
+            }, 150, function () {
+              nav.removeClass('animate');
+            });
+            _this.parent().addClass('active');
+          });
+        } else {
+          line.animate({
+            left: position.left,
+            width: ((pos - position.left) + wid)
+          }, 300, function () {
+            line.animate({
+              width: width
+            }, 150, function () {
+              nav.removeClass('animate');
+            });
+            _this.parent().addClass('active');
+          });
+        }
+
+        pos = position.left;
+        wid = width;
+      }
+    });
+  }
 
   moveToSelectedTab(link: string) {
     this.router.navigate([link]);

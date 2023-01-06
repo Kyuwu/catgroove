@@ -1,52 +1,108 @@
-$primaryBgColor: var(--bg-primary-color);
-$primaryTextColor: var(--primary-text-color);
-$secTextColor: var(--secondary-text-color);
-$fontFamily: var(--text-font-family);
+// $primaryBgColor: var(--bg-primary-color);
+// $primaryTextColor: var(--primary-text-color);
+// $secTextColor: var(--secondary-text-color);
+// $fontFamily: var(--text-font-family);
 
-/* Styles for tab labels */
-a {
-  color: $primaryTextColor !important;
+// /* Styles for tab labels */
+// a {
+//   color: $primaryTextColor !important;
+// }
+
+// /* Styles for the active tab label */
+// a:active {
+//   font-weight: 500;
+//   color: $secTextColor;
+// }
+
+// .mat-tab-group.mat-primary .mat-ink-bar,
+// .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+//   background-color: red;
+// }
+
+// .mat-tab-nav-bar {
+//   background-color: black;
+// }
+
+// .remove-border-bottom .mat-tab-header {
+//   border-bottom: none;
+// }
+
+// mat-tab-group {
+//   background-color: black;
+// }
+
+// .mat-tab-label {
+//   color: $primaryTextColor !important;
+// }
+
+// .mat-tab-label.mat-tab-label-active {
+//   font-weight: 500;
+//   color: $secTextColor;
+// }
+
+// .mat-tab-header-pagination-chevron {
+//   border-color: red !important;
+// }
+
+// .custom-label {
+//   width: 100%;
+//   padding-top: 14px;
+//   padding-bottom: 14px;
+//   position: absolute;
+// }
+
+* {
+  box-sizing: border-box;
 }
-
-/* Styles for the active tab label */
-a:active {
-  font-weight: 500;
-  color: $secTextColor;
+body {
+  background: #1A1E23;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-
-.mat-tab-group.mat-primary .mat-ink-bar,
-.mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  background-color: red;
+nav {
+  position: relative;
+  padding-bottom: 12px;
+  .line {
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    margin: 10px 0 0 0;
+    background: #FF1847;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    li {
+      margin: 0 40px 0 0;
+      opacity: .4;
+      transition: all 0.4s ease;
+      &:hover {
+        opacity: .7;
+      }
+      &.active {
+        opacity: 1;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      a {
+        text-decoration: none;
+        color: #fff;
+        text-transform: uppercase;
+        display: block;
+        font-weight: 600;
+        letter-spacing: .2em;
+        font-size: 14px;
+      }
+//Center
+    }
+  }
 }
-
-.mat-tab-nav-bar {
-  background-color: black;
-}
-
-.remove-border-bottom .mat-tab-header {
-  border-bottom: none;
-}
-
-mat-tab-group {
-  background-color: black;
-}
-
-.mat-tab-label {
-  color: $primaryTextColor !important;
-}
-
-.mat-tab-label.mat-tab-label-active {
-  font-weight: 500;
-  color: $secTextColor;
-}
-
-.mat-tab-header-pagination-chevron {
-  border-color: red !important;
-}
-
-.custom-label {
-  width: 100%;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  position: absolute;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
