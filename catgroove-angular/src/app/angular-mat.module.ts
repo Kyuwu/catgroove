@@ -21,6 +21,21 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 const materialModules = [
   MatButtonModule,
@@ -44,7 +59,21 @@ const materialModules = [
   MatProgressBarModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatInputModule
+  MatInputModule,
+  MatTabsModule,
+  MatListModule,
+  MatMenuModule,
+  MatDividerModule,
+  MatChipsModule,
+  MatBadgeModule,
+  MatAutocompleteModule,
+  CdkTreeModule,
+  MatTreeModule,
+  MatButtonToggleModule,
+  MatGridListModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatSlideToggleModule
 ];
 
 @NgModule({

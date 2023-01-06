@@ -48,3 +48,15 @@
   z-index: -1;
 }
 
+.parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.child {
+  align-items: stretch;
+}
+.nologin {
+  max-width: 50vw;
+}

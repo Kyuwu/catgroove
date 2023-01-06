@@ -1,19 +1,15 @@
 
 <ng-container *ngIf="showLoader">
   <div *ngIf="this.url.path()==='/admin/dashboard'; else noLogin">
-    <div>
-      <router-outlet><div *ngIf="loaderService.isLoading | async" class="loader-container">
-        <mat-spinner strokeWidth="3" diameter="40" color="light-primary-text"></mat-spinner>
-      </div>  </router-outlet>
+    <div class="parent">
+      <router-outlet class="child"></router-outlet>
     </div>
   </div>
  <ng-template #noLogin>
   <app-twitch-player></app-twitch-player>
     <app-navbar></app-navbar>
-    <div>
-      <router-outlet><div *ngIf="loaderService.isLoading | async" class="loader-container">
-        <mat-spinner strokeWidth="3" diameter="40" color="light-primary-text"></mat-spinner>
-      </div></router-outlet>
+    <div class="parent">
+      <router-outlet class="child nologin"></router-outlet>
     </div>
   </ng-template>
   <!-- <Particles id="tsparticles" [options]="options"></Particles> -->
