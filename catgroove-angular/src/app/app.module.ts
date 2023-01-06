@@ -16,7 +16,6 @@ import { BarMenuComponent } from './components/bar-menu/bar-menu.component';
 import { RulesComponent } from './components/rules/rules.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { DiscordComponent } from './components/discord/discord.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from './angular-mat.module';
 import { LoginComponent } from './components/admin/login/login.component';
 import { RegisterComponent } from './components/admin/register/register.component';
@@ -129,8 +128,7 @@ import { EditPartnerComponent } from './components/admin/dashboard/partner-list/
     AppRoutingModule,
     HttpClientModule,
     NgHttpLoaderModule.forRoot(), // <============ Don't forget to call 'forRoot()'!
-    BrowserAnimationsModule,
-    FlexLayoutModule, 
+    BrowserAnimationsModule, 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

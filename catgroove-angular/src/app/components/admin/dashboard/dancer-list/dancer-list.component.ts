@@ -3,22 +3,14 @@ import {
   Component,
   ViewChild
 } from '@angular/core';
-import {
-  MatPaginator
-} from '@angular/material/paginator';
-import {
-  MatTableDataSource
-} from '@angular/material/table';
+
 import {
   map
 } from 'rxjs';
 import {
   DancerService
 } from 'src/app/shared/services/firebase/dancer.service';
-import {
-  MatDialog,
-  MatDialogRef
-} from '@angular/material/dialog';
+
 import {
   AddDancerComponent
 } from './add-dancer/add-dancer.component';
@@ -28,6 +20,9 @@ import {
 import {
   SnackbarService
 } from 'src/app/shared/services/snackbar.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-dancer-list',

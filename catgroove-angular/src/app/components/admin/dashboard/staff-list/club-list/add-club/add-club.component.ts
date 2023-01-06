@@ -8,14 +8,9 @@ import {
   Validators
 } from '@angular/forms';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
-import Club from 'src/app/shared/models/club';
-import Staff from 'src/app/shared/models/staff';
 import {
   ClubService
 } from 'src/app/shared/services/firebase/club.service';
-import {
-  StaffService
-} from 'src/app/shared/services/firebase/staff.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { areas, datacenters } from 'src/app/shared/services/staticdata';
 import {

@@ -12,11 +12,8 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { base64ToFile, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import Dancer from 'src/app/shared/models/dancer';
 import {

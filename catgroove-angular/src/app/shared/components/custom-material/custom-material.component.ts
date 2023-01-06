@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
@@ -6,7 +6,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   selector: 'app-custom-material',
   templateUrl: './custom-material.component.html',
   styleUrls: ['./custom-material.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class CustomMaterialComponent {
   @Input() model: FormControl;

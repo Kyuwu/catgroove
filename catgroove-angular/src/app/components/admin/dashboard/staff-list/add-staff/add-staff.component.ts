@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
-import { map } from 'rxjs';
 import Club from 'src/app/shared/models/club';
 import Staff from 'src/app/shared/models/staff';
 import { ClubService } from 'src/app/shared/services/firebase/club.service';

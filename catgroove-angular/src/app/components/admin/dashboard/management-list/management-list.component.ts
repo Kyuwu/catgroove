@@ -3,7 +3,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs';
-import { FileuploadService } from 'src/app/shared/services/fileupload.service';
 import { ManagementService } from 'src/app/shared/services/firebase/management.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { AddManagementComponent } from './add-management/add-management.component';

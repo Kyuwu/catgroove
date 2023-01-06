@@ -26,7 +26,6 @@ import {
 import {
   SnackbarService
 } from 'src/app/shared/services/snackbar.service';
-import { ClubListService } from 'src/app/shared/util/clublist/clublist.service';
 import {
   ImageSnippet
 } from 'src/app/shared/util/imagesnippet.model';

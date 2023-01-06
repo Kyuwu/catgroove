@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GALLERY_CONFIG } from 'ng-gallery';
 import { AuthService } from './shared/services/auth.service';

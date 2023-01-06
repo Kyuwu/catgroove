@@ -1,23 +1,12 @@
 import {
   Component,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+  OnInit} from '@angular/core';
 import {
   FormGroup,
-  FormControl,
-  FormControlName,
   FormBuilder,
   Validators
 } from '@angular/forms';
 import {
-  MatDialog
-} from '@angular/material/dialog';
-import {
-  MatSnackBar
-} from '@angular/material/snack-bar';
-import {
-  base64ToFile,
   ImageCroppedEvent,
   LoadedImage
 } from 'ngx-image-cropper';
