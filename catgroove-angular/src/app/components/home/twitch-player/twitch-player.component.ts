@@ -18,7 +18,7 @@ export class TwitchPlayerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.retrieveList()
   }
 
   retrieveList(): void {
