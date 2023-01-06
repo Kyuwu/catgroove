@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatInputModule} from '@angular/material/input';
 
 const materialModules = [
   MatButtonModule,
@@ -43,6 +44,7 @@ const materialModules = [
   MatProgressBarModule,
   MatSidenavModule,
   MatToolbarModule,
+  MatInputModule
 ];
 
 @NgModule({
