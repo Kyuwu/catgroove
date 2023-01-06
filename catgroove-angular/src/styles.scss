@@ -323,3 +323,31 @@ table.mat-table {
 .actionButtons th {
   text-align: right !important;
 }
+
+.wrapper-front {
+  width: 50vw;
+}
+
+.front-card {
+  width: 50vw;
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  text-decoration: none;
+
+  img {
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+    margin-top: -16px !important;
+  }
+  mat-card-title {
+    font-weight: 600;
+    margin-top: 1vh !important;
+    color: rgb(34, 236, 236);;
+    text-align: center !important;
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-decoration-color: white;
+  }
+}
+
