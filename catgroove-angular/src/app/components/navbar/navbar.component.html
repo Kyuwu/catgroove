@@ -1,5 +1,5 @@
 <!-- <nav fxLayout="column" fxLayoutAlign="space-around center" mat-tab-nav-bar>
-  <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive"
+  <a mat-tab-link *ngFor="let link of navLinks" routerLinkActive="active_route" [routerLink]="link.link" #rla="routerLinkActive"
     [active]="rla.isActive">
     {{link.label}}
   </a>
@@ -13,10 +13,7 @@
 </mat-tab-group> -->
 <nav>
   <ul>
-    <li class="active"><a href="">First</a></li>
-    <li><a href="">Second</a></li>
-    <li><a href="">Third</a></li>
-    <!-- <li *ngFor="let link of navLinks"><a [routerLink]="link.link">{{link.label}}</a></li> -->
+    <li *ngFor="let link of navLinks" class="item"><a [routerLink]="link.link">{{link.label}}</a></li>
 
   </ul>
 </nav>
