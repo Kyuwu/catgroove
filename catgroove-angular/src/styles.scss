@@ -329,6 +329,8 @@ table.mat-table {
 }
 
 .front-card {
+  margin-top: 88px;
+  overflow: hidden;
   width: 50vw;
   border-bottom-left-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
@@ -340,14 +342,19 @@ table.mat-table {
     border-bottom-right-radius: 4px !important;
     margin-top: -16px !important;
   }
+
   mat-card-title {
     font-weight: 600;
     margin-top: 1vh !important;
-    color: rgb(34, 236, 236);;
+    color: white;
     text-align: center !important;
     text-decoration: underline;
     text-decoration-thickness: 4px;
-    text-decoration-color: white;
+    text-decoration-color: rgb(34, 236, 236);
   }
 }
-
+@media only screen and (max-width: 950px) {
+  mat-card {
+    width: 90vw !important;
+  }
+}

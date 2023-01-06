@@ -108,4 +108,18 @@ a:hover::before, a:focus::before {
   transform-origin: center top;
   transform: scale(1, 1);
 }
-
+.navvy {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 10;
+}
+@media only screen and (max-width: 950px) {
+  .navvy {
+    height: 88px;
+    li a {
+      display: none;
+    }
+  }
+}
