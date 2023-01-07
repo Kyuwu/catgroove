@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
+import Bar from 'src/app/shared/models/bar';
+import { BarService } from 'src/app/shared/services/firebase/bar.service';
 
 @Component({
   selector: 'app-bar-menu',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarMenuComponent implements OnInit {
 
-  constructor() { }
-
+  type = "Bar menu";
+  constructor(private db: BarService) { }
+  datas!: Bar[];
   ngOnInit(): void {
+    this.retrieveList();
   }
 
+  retrieveList(): void {
+    this.db.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({
+            key: c.payload.key,
+            ...c.payload.val(),
+          })
+        )
+      )
+    ).subscribe(data => {
+      console.log(data);
+        this.datas = data;
+    });
+  }
 }

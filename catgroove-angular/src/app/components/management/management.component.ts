@@ -12,6 +12,7 @@ import { ManagementService } from 'src/app/shared/services/firebase/management.s
 })
 export class ManagementComponent implements OnInit {
 
+  type = "Management"
   constructor(private db: DancerService, private gallery: Gallery) {}
 
   ngOnInit(): void {
